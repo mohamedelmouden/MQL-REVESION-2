@@ -1,0 +1,3436 @@
+[
+  {
+    "category": "C",
+    "question": "Quelle est la taille (en octets) d'un pointeur sur une machine 64 bits classique ?",
+    "choices": [
+      "2 octets",
+      "4 octets",
+      "8 octets",
+      "16 octets"
+    ],
+    "correct": 2,
+    "explanations": [
+      "Trop petit pour une adresse 64 bits.",
+      "C'est la taille d'un int sur beaucoup de systèmes, pas d'un pointeur.",
+      "Sur une architecture 64 bits, une adresse mémoire tient sur 8 octets, quel que soit le type pointé.",
+      "Aucune architecture courante n'utilise 16 octets pour un pointeur."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Que fait l'opérateur `sizeof` en C ?",
+    "choices": [
+      "Il calcule la valeur d'une variable",
+      "Il retourne la taille en octets d'un type ou d'une variable",
+      "Il alloue de la mémoire",
+      "Il convertit un type en un autre"
+    ],
+    "correct": 1,
+    "explanations": [
+      "sizeof ne lit pas la valeur, il mesure la taille mémoire.",
+      "C'est un opérateur (souvent évalué à la compilation) qui donne la taille en octets d'un type ou d'une expression.",
+      "L'allocation se fait avec malloc/calloc, pas sizeof.",
+      "La conversion de type se fait par un cast, pas par sizeof."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quelle fonction permet d'allouer dynamiquement de la mémoire et de l'initialiser à zéro ?",
+    "choices": [
+      "malloc",
+      "calloc",
+      "realloc",
+      "free"
+    ],
+    "correct": 1,
+    "explanations": [
+      "malloc alloue mais ne met pas la mémoire à zéro.",
+      "calloc alloue un bloc mémoire pour un nombre d'éléments donné et initialise tous les octets à 0.",
+      "realloc redimensionne un bloc déjà alloué, sans garantir une initialisation à zéro.",
+      "free libère la mémoire, elle n'alloue rien."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Que se passe-t-il si on oublie d'appeler `free()` sur une zone allouée avec `malloc()` ?",
+    "choices": [
+      "Le programme plante immédiatement",
+      "Une fuite mémoire (memory leak)",
+      "La mémoire est libérée automatiquement à la fin de la fonction",
+      "Rien, c'est sans conséquence"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le programme continue de tourner, il ne plante pas forcément.",
+      "La zone reste réservée alors qu'elle n'est plus utilisée : c'est une fuite mémoire.",
+      "En C, il n'y a pas de ramasse-miettes ; la mémoire allouée dynamiquement doit être libérée explicitement.",
+      "Sur des programmes longs ou des boucles, l'accumulation de fuites peut épuiser la mémoire disponible."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quelle est la différence principale entre un tableau et un pointeur en C ?",
+    "choices": [
+      "Aucune, ils sont strictement identiques",
+      "Un tableau réserve un espace mémoire fixe, un pointeur est une variable contenant une adresse",
+      "Un pointeur ne peut jamais être incrémenté",
+      "Un tableau ne peut pas être passé à une fonction"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Ils se comportent souvent de façon similaire mais ne sont pas identiques (sizeof diffère, un tableau n'est pas réaffectable).",
+      "Le nom du tableau se convertit en pointeur sur son premier élément dans la plupart des contextes, mais le tableau lui-même possède une taille fixe et sizeof le reflète.",
+      "On peut parfaitement incrémenter un pointeur (arithmétique de pointeurs).",
+      "Un tableau, via la conversion en pointeur, peut être passé en argument de fonction."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Que retourne la fonction `main()` par convention lorsqu'un programme se termine normalement ?",
+    "choices": [
+      "1",
+      "-1",
+      "0",
+      "NULL"
+    ],
+    "correct": 2,
+    "explanations": [
+      "1 est en général interprété comme une erreur par le shell.",
+      "-1 n'est pas une convention standard de succès.",
+      "Par convention POSIX/C, retourner 0 signifie que le programme s'est terminé avec succès.",
+      "NULL est un pointeur nul, pas un code de retour entier valide."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "En C, quel mot-clé permet de définir une variable dont la valeur ne doit pas être modifiée ?",
+    "choices": [
+      "static",
+      "const",
+      "volatile",
+      "extern"
+    ],
+    "correct": 1,
+    "explanations": [
+      "static concerne la durée de vie/la portée, pas l'immutabilité.",
+      "const indique au compilateur que la variable ne doit pas être modifiée après son initialisation.",
+      "volatile indique que la valeur peut changer indépendamment du programme (registre matériel...), l'inverse du but recherché.",
+      "extern sert à déclarer une variable définie dans un autre fichier."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Que fait l'instruction `break` à l'intérieur d'une boucle `for` ?",
+    "choices": [
+      "Elle passe à l'itération suivante",
+      "Elle arrête immédiatement la boucle et sort de celle-ci",
+      "Elle relance la boucle depuis le début",
+      "Elle met la boucle en pause"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est le rôle de `continue`, pas de `break`.",
+      "`break` interrompt immédiatement la boucle englobante et poursuit l'exécution après elle.",
+      "Il n'existe pas de mécanisme natif pour 'relancer' une boucle depuis le début.",
+      "Le C n'a pas de notion de pause d'exécution intégrée au langage."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quel est le résultat de `5 / 2` en C, avec des entiers ?",
+    "choices": [
+      "2.5",
+      "2",
+      "3",
+      "2.0"
+    ],
+    "correct": 1,
+    "explanations": [
+      "La division entière tronque la partie décimale, le résultat n'est donc pas 2.5.",
+      "La division de deux entiers effectue une division entière : le résultat est tronqué vers 2.",
+      "3 correspondrait à un arrondi, ce que C ne fait pas pour la division entière.",
+      "2.0 supposerait une conversion en flottant qui n'a pas lieu ici."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quelle directive de préprocesseur permet d'inclure un fichier d'en-tête ?",
+    "choices": [
+      "#define",
+      "#include",
+      "#import",
+      "#pragma"
+    ],
+    "correct": 1,
+    "explanations": [
+      "#define sert à définir des macros ou constantes.",
+      "#include insère le contenu d'un fichier (souvent un .h) avant la compilation.",
+      "#import n'est pas une directive standard du C (utilisée dans d'autres langages).",
+      "#pragma donne des instructions spécifiques au compilateur, pas l'inclusion de fichiers."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Que représente `NULL` en C ?",
+    "choices": [
+      "La valeur 0 pour tous les types",
+      "Un pointeur qui ne pointe vers aucun objet valide",
+      "Une erreur de compilation",
+      "Un caractère de fin de chaîne"
+    ],
+    "correct": 1,
+    "explanations": [
+      "NULL est spécifiquement une valeur de pointeur, pas une valeur générique pour tous les types.",
+      "NULL est une constante représentant un pointeur nul, n'adressant aucun objet valide.",
+      "NULL est une macro standard valide, elle ne provoque pas d'erreur.",
+      "Le caractère de fin de chaîne est '\\0', différent de NULL même si sa valeur numérique est souvent 0."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quelle fonction de la bibliothèque standard permet de copier une chaîne de caractères ?",
+    "choices": [
+      "strcpy",
+      "strlen",
+      "strcmp",
+      "strcat"
+    ],
+    "correct": 0,
+    "explanations": [
+      "strcpy copie le contenu d'une chaîne source vers une chaîne destination.",
+      "strlen calcule la longueur d'une chaîne, elle ne copie rien.",
+      "strcmp compare deux chaînes entre elles.",
+      "strcat concatène une chaîne à la suite d'une autre, elle ne fait pas une copie simple."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Qu'est-ce qu'une variable statique déclarée dans une fonction ?",
+    "choices": [
+      "Une variable qui garde sa valeur entre les appels successifs de la fonction",
+      "Une variable partagée entre tous les threads",
+      "Une constante qui ne peut jamais changer",
+      "Une variable accessible depuis tout autre fichier"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exactement l'effet recherché : la variable conserve sa valeur d'un appel à l'autre.",
+      "Une variable statique locale n'est pas automatiquement thread-safe ni partagée entre threads sans précaution.",
+      "static ne rend pas une variable constante ; sa valeur peut être modifiée.",
+      "Une static locale à une fonction reste limitée à cette fonction, contrairement à extern."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quel opérateur permet d'accéder à un champ d'une structure via un pointeur sur cette structure ?",
+    "choices": [
+      ".",
+      "->",
+      "::",
+      "&"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le point s'utilise pour accéder directement à un champ d'une structure, pas via un pointeur.",
+      "La flèche `->` déréférence le pointeur et accède au champ en une seule opération.",
+      "`::` est l'opérateur de résolution de portée du C++, il n'existe pas en C standard.",
+      "`&` est l'opérateur d'adresse, il ne sert pas à accéder à un champ."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Que fait la fonction `fopen()` si le fichier demandé n'existe pas (en mode lecture 'r') ?",
+    "choices": [
+      "Elle crée automatiquement le fichier",
+      "Elle retourne NULL",
+      "Elle lève une exception",
+      "Elle bloque le programme indéfiniment"
+    ],
+    "correct": 1,
+    "explanations": [
+      "En mode lecture 'r', fopen ne crée pas le fichier s'il n'existe pas.",
+      "fopen retourne un pointeur NULL en cas d'échec, qu'il faut vérifier avant utilisation.",
+      "Le C ne dispose pas nativement d'un mécanisme d'exceptions comme le C++ ou Java.",
+      "fopen échoue immédiatement, il ne met pas le programme en attente."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Que signifie l'acronyme UB souvent cité en C (« Undefined Behavior ») ?",
+    "choices": [
+      "Un avertissement du compilateur sans conséquence",
+      "Un comportement que la norme du langage ne définit pas et peut varier selon le compilateur",
+      "Une erreur systématique de compilation",
+      "Un bug uniquement lié aux systèmes 32 bits"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Un UB peut être bien plus grave qu'un simple avertissement, y compris silencieux.",
+      "La norme C ne fixe pas ce que doit faire le programme, le résultat dépend du compilateur, de l'optimisation, voire de l'exécution.",
+      "Un UB peut compiler sans erreur et produire un comportement imprévisible à l'exécution.",
+      "Un UB peut survenir sur n'importe quelle architecture, 32 ou 64 bits."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quelle est la portée (scope) d'une variable déclarée à l'intérieur d'un bloc `{ }` ?",
+    "choices": [
+      "Tout le programme",
+      "Uniquement ce bloc et les blocs imbriqués dans celui-ci",
+      "Uniquement le fichier source",
+      "Tous les fichiers du projet"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une variable locale à un bloc n'est pas visible en dehors de ce bloc.",
+      "La variable est visible depuis sa déclaration jusqu'à la fin du bloc englobant, y compris les sous-blocs.",
+      "C'est le comportement d'une variable globale statique, pas d'une variable de bloc.",
+      "Seul un extern déclaré et exporté serait visible depuis d'autres fichiers."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quel est le rôle du mot-clé `typedef` en C ?",
+    "choices": [
+      "Créer un nouveau type de données depuis rien",
+      "Définir un alias pour un type existant",
+      "Convertir un type en un autre à l'exécution",
+      "Déclarer une fonction typée"
+    ],
+    "correct": 1,
+    "explanations": [
+      "typedef ne crée pas un type fondamentalement nouveau, il renomme un type existant.",
+      "typedef donne un nom alternatif (alias) à un type déjà existant, pour simplifier l'écriture du code.",
+      "La conversion de type se fait par un cast, pas par typedef, et typedef agit à la compilation.",
+      "typedef ne sert pas à déclarer des fonctions mais à nommer des types."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Que fait l'opérateur `%` (modulo) sur des entiers en C ?",
+    "choices": [
+      "Il calcule un pourcentage",
+      "Il retourne le reste de la division entière",
+      "Il retourne le quotient de la division",
+      "Il n'existe pas en C"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le modulo n'a rien à voir avec un calcul de pourcentage.",
+      "`%` renvoie le reste de la division entière entre les deux opérandes.",
+      "Le quotient s'obtient avec l'opérateur `/`.",
+      "`%` est un opérateur standard du C, applicable aux types entiers."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quelle est la conséquence d'un débordement de tableau (« buffer overflow ») en C ?",
+    "choices": [
+      "Le compilateur refuse toujours de compiler",
+      "Un comportement indéfini pouvant corrompre la mémoire ou créer une faille de sécurité",
+      "Le tableau est automatiquement agrandi",
+      "Rien, C vérifie toujours les indices"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le C ne vérifie pas les accès hors-limites à la compilation dans le cas général.",
+      "Écrire hors des bornes d'un tableau peut corrompre d'autres données en mémoire et constitue une faille de sécurité classique.",
+      "Les tableaux en C ont une taille fixe à la compilation ou à l'allocation, ils ne s'agrandissent pas automatiquement.",
+      "Contrairement à d'autres langages, C ne fait pas de vérification automatique des bornes des tableaux."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quelle est la différence entre `argc` et `argv` dans `int main(int argc, char *argv[])` ?",
+    "choices": [
+      "argc est le nombre d'arguments, argv est le tableau de ces arguments",
+      "argc est le tableau, argv est le compteur",
+      "Ce sont deux noms différents pour la même chose",
+      "argc contient les variables d'environnement"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : argc (argument count) donne le nombre d'arguments, argv (argument vector) les contient.",
+      "C'est l'inverse : argv est le tableau de chaînes, argc est l'entier compteur.",
+      "Ils ont des rôles complémentaires mais distincts (un entier vs un tableau de pointeurs).",
+      "Les variables d'environnement sont accessibles via un troisième paramètre (envp) ou la variable globale environ, pas argc."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Que fait l'instruction `continue` dans une boucle ?",
+    "choices": [
+      "Elle arrête totalement la boucle",
+      "Elle passe directement à l'itération suivante en sautant le reste du corps de boucle",
+      "Elle recommence le programme depuis le début",
+      "Elle est équivalente à `break`"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est le rôle de `break`, pas de `continue`.",
+      "`continue` saute le reste des instructions du corps de la boucle courante et passe à l'itération suivante.",
+      "`continue` n'a aucun effet sur l'exécution du programme en dehors de la boucle.",
+      "`break` et `continue` ont des effets différents : l'un sort de la boucle, l'autre passe à l'itération suivante."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quel type de donnée est le plus adapté pour représenter un caractère unique en C ?",
+    "choices": [
+      "int",
+      "char",
+      "float",
+      "string"
+    ],
+    "correct": 1,
+    "explanations": [
+      "int peut contenir un code de caractère mais n'est pas le type dédié.",
+      "`char` est le type prévu spécifiquement pour stocker un caractère (souvent sur 1 octet).",
+      "float est destiné aux nombres à virgule flottante, pas aux caractères.",
+      "Il n'existe pas de type natif `string` en C ; les chaînes sont des tableaux de char."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Que fait la fonction `strlen()` ?",
+    "choices": [
+      "Elle compare deux chaînes",
+      "Elle retourne le nombre de caractères d'une chaîne, sans compter le caractère de fin '\\0'",
+      "Elle alloue de la mémoire pour une chaîne",
+      "Elle convertit une chaîne en entier"
+    ],
+    "correct": 1,
+    "explanations": [
+      "La comparaison de chaînes se fait avec strcmp.",
+      "strlen parcourt la chaîne jusqu'au caractère nul et retourne le nombre de caractères rencontrés.",
+      "strlen ne fait aucune allocation mémoire, elle se contente de mesurer.",
+      "La conversion chaîne vers entier se fait avec atoi ou strtol."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Pourquoi dit-on que le passage de paramètres en C se fait « par valeur » ?",
+    "choices": [
+      "Parce que la fonction reçoit une copie de la valeur de l'argument, pas l'original",
+      "Parce que la fonction modifie toujours la variable d'origine",
+      "Parce que C ne permet pas de passer de paramètres",
+      "Parce que tous les paramètres sont convertis en pointeurs automatiquement"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : la fonction travaille sur une copie locale, les modifications ne se répercutent pas sur l'appelant (sauf via un pointeur explicite).",
+      "C'est l'inverse : sans pointeur, la variable d'origine de l'appelant n'est jamais modifiée.",
+      "C permet bien sûr de passer des paramètres, c'est fondamental au langage.",
+      "Seuls les tableaux se convertissent implicitement en pointeurs ; les autres types sont copiés tels quels."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "À quoi sert le mot-clé `struct` en C ?",
+    "choices": [
+      "Définir une fonction",
+      "Regrouper plusieurs variables de types potentiellement différents sous un seul type",
+      "Créer une boucle",
+      "Importer un module externe"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Les fonctions se définissent avec un type de retour et des paramètres, pas avec struct.",
+      "Une structure regroupe des champs hétérogènes (types différents) sous un même type composite.",
+      "Les boucles utilisent for, while ou do...while, pas struct.",
+      "Le C n'a pas de notion de « module » importable comme en Python ; struct ne joue pas ce rôle."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quelle instruction permet de tester plusieurs valeurs possibles d'une même variable entière de façon lisible ?",
+    "choices": [
+      "if imbriqués uniquement",
+      "switch / case",
+      "while",
+      "goto uniquement"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Des if imbriqués fonctionnent mais sont souvent moins lisibles pour de nombreux cas discrets.",
+      "switch/case est conçu pour tester une variable entière (ou assimilée) contre plusieurs valeurs constantes.",
+      "while sert à répéter un bloc tant qu'une condition est vraie, pas à tester plusieurs valeurs.",
+      "goto existe en C mais son usage pour ce cas est déconseillé et peu lisible."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Que se passe-t-il si on compare deux chaînes de caractères avec l'opérateur `==` en C ?",
+    "choices": [
+      "On compare le contenu des deux chaînes caractère par caractère",
+      "On compare les adresses (pointeurs) des deux chaînes, pas leur contenu",
+      "Cela provoque toujours une erreur de compilation",
+      "C convertit automatiquement en comparaison de contenu"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est le rôle de strcmp, pas de `==` sur des pointeurs de type char*.",
+      "`==` sur deux `char*` compare les adresses mémoire, ce qui donne souvent un résultat faux même si les contenus sont identiques.",
+      "Ce code compile parfaitement, mais son résultat est souvent trompeur.",
+      "Le C ne fait aucune conversion implicite de ce type entre pointeurs et comparaison de contenu."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quel en-tête standard faut-il inclure pour utiliser `printf()` ?",
+    "choices": [
+      "<stdlib.h>",
+      "<string.h>",
+      "<stdio.h>",
+      "<math.h>"
+    ],
+    "correct": 2,
+    "explanations": [
+      "<stdlib.h> concerne l'allocation mémoire et les conversions générales, pas les entrées/sorties formatées.",
+      "<string.h> concerne les fonctions de manipulation de chaînes.",
+      "<stdio.h> déclare les fonctions d'entrée/sortie standard comme printf et scanf.",
+      "<math.h> concerne les fonctions mathématiques (sqrt, pow...)."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Qu'est-ce qu'un pointeur de fonction en C ?",
+    "choices": [
+      "Une variable qui pointe vers une fonction et permet de l'appeler indirectement",
+      "Une fonction qui retourne toujours un pointeur",
+      "Une erreur de syntaxe",
+      "Un synonyme de pointeur nul"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : il stocke l'adresse d'une fonction et permet un appel indirect, utile pour les callbacks.",
+      "Un pointeur de fonction peut être utilisé indépendamment du type de retour de la fonction pointée.",
+      "La syntaxe des pointeurs de fonction est valide et largement utilisée (ex : callbacks, tables de dispatch).",
+      "NULL est un pointeur nul générique, ce n'est pas la définition d'un pointeur de fonction."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quelle est la différence entre `malloc` et `calloc` ?",
+    "choices": [
+      "Aucune différence",
+      "calloc initialise la mémoire allouée à zéro, malloc non",
+      "malloc est plus lent que calloc dans tous les cas",
+      "calloc ne peut allouer qu'un seul octet"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Elles diffèrent notamment sur l'initialisation de la mémoire.",
+      "calloc met à zéro tous les octets alloués, contrairement à malloc qui laisse un contenu indéterminé.",
+      "Les performances relatives dépendent de l'implémentation, ce n'est pas une règle absolue.",
+      "calloc peut allouer un tableau d'éléments, sa taille n'est pas limitée à un octet."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Que provoque une récursion sans condition d'arrêt correcte ?",
+    "choices": [
+      "Rien de particulier",
+      "Un débordement de pile (stack overflow)",
+      "Une amélioration des performances",
+      "Une compilation impossible"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une récursion infinie consomme la pile d'appels jusqu'à épuisement.",
+      "Chaque appel récursif empile un nouveau contexte ; sans condition d'arrêt, la pile finit par déborder.",
+      "Une récursion incontrôlée dégrade les performances, elle ne les améliore jamais.",
+      "Le code compile normalement ; le problème n'apparaît qu'à l'exécution."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Dans un fichier `.h`, à quoi servent les « include guards » (`#ifndef/#define/#endif`) ?",
+    "choices": [
+      "Accélérer la compilation uniquement",
+      "Éviter les inclusions multiples d'un même fichier d'en-tête",
+      "Chiffrer le code source",
+      "Documenter automatiquement le fichier"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Cet effet est secondaire ; le but principal est d'éviter les erreurs de double définition.",
+      "Ils empêchent qu'un même en-tête soit inclus plusieurs fois dans une même unité de compilation, évitant des redéfinitions.",
+      "Cette technique n'a aucun rapport avec le chiffrement du code.",
+      "Les include guards ne génèrent aucune documentation, ils protègent seulement la compilation."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quel est l'intérêt du mot-clé `const` appliqué à un paramètre pointeur, ex. `void f(const char *s)` ?",
+    "choices": [
+      "Empêcher la fonction de modifier les données pointées par s",
+      "Empêcher tout appel à la fonction",
+      "Rendre le pointeur lui-même immuable dans l'appelant",
+      "Interdire l'utilisation de s à l'intérieur de la fonction"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est précisément l'objectif : garantir en lecture seule les données pointées, ce qui documente et sécurise l'API.",
+      "La fonction reste tout à fait appelable normalement.",
+      "Cela concerne les données pointées, pas le pointeur de l'appelant lui-même.",
+      "s reste parfaitement utilisable, simplement en lecture seule pour les données pointées."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Qu'est-ce que le langage C par rapport à Python en termes de typage ?",
+    "choices": [
+      "C est un langage à typage dynamique comme Python",
+      "C est un langage à typage statique, les types sont fixés à la compilation",
+      "C n'a aucun système de types",
+      "Python est un langage compilé alors que C est interprété"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est l'inverse : Python est à typage dynamique, pas C.",
+      "En C, chaque variable a un type déclaré et vérifié à la compilation, ce qui correspond au typage statique.",
+      "C possède un système de types explicite (int, float, char, struct...).",
+      "C'est l'inverse : C est généralement compilé et Python est généralement interprété."
+    ]
+  },
+  {
+    "category": "C",
+    "question": "Quel opérateur permet d'obtenir l'adresse mémoire d'une variable ?",
+    "choices": [
+      "*",
+      "&",
+      "->",
+      "%"
+    ],
+    "correct": 1,
+    "explanations": [
+      "`*` sert à déréférencer un pointeur (accéder à la valeur pointée), pas à obtenir une adresse.",
+      "`&` appliqué à une variable retourne son adresse mémoire, utilisée notamment pour initialiser un pointeur.",
+      "`->` sert à accéder à un champ via un pointeur de structure.",
+      "`%` est l'opérateur modulo, sans rapport avec les adresses."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Quel est le principe qui consiste à cacher les détails internes d'un objet et à n'exposer qu'une interface publique ?",
+    "choices": [
+      "Héritage",
+      "Encapsulation",
+      "Polymorphisme",
+      "Abstraction"
+    ],
+    "correct": 1,
+    "explanations": [
+      "L'héritage permet de réutiliser du code d'une classe dans une autre, ce n'est pas la dissimulation des détails.",
+      "L'encapsulation consiste précisément à protéger les données internes et à ne les exposer que via des méthodes publiques.",
+      "Le polymorphisme concerne la capacité d'un même appel à se comporter différemment selon l'objet réel.",
+      "L'abstraction consiste à ne représenter que les aspects essentiels, un concept proche mais distinct de l'encapsulation stricte."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Que signifie le polymorphisme en programmation orientée objet ?",
+    "choices": [
+      "La possibilité qu'un objet appartienne à plusieurs classes non liées simultanément",
+      "La capacité d'objets de classes différentes (liées par héritage/interface) à répondre différemment à un même message",
+      "L'impossibilité de redéfinir une méthode",
+      "Le fait qu'une classe ne puisse avoir qu'une seule méthode"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Un objet a un type précis ; le polymorphisme concerne le comportement selon le type réel, pas une appartenance multiple.",
+      "C'est la définition correcte : un même appel de méthode produit un comportement adapté au type réel de l'objet.",
+      "Le polymorphisme repose justement sur la redéfinition (surcharge/redéfinition) des méthodes.",
+      "Une classe peut définir autant de méthodes que nécessaire, sans lien avec le polymorphisme."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Qu'est-ce qu'une classe abstraite ?",
+    "choices": [
+      "Une classe qui ne peut pas être instanciée directement et sert de base à d'autres classes",
+      "Une classe sans aucun attribut",
+      "Une classe qui ne peut avoir qu'une seule sous-classe",
+      "Une classe automatiquement supprimée après compilation"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est la définition correcte : elle définit un contrat/comportement partiel, complété par les classes filles.",
+      "Une classe abstraite peut tout à fait posséder des attributs.",
+      "Une classe abstraite peut être héritée par un nombre quelconque de sous-classes.",
+      "La notion de suppression après compilation n'existe pas pour une classe abstraite."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Quelle est la différence essentielle entre une interface et une classe abstraite (concept général POO) ?",
+    "choices": [
+      "Aucune, ce sont des synonymes stricts dans tous les langages",
+      "Une interface ne définit en général que des signatures de méthodes, une classe abstraite peut fournir une implémentation partielle",
+      "Une interface peut être instanciée directement",
+      "Une classe abstraite ne peut jamais contenir de méthode"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Les deux notions se recoupent mais ne sont pas identiques selon les langages (Java, C++...).",
+      "C'est la distinction classique : l'interface est un contrat pur, la classe abstraite peut mélanger contrat et implémentation.",
+      "Ni une interface ni une classe abstraite ne peuvent être instanciées directement.",
+      "Une classe abstraite peut très bien contenir des méthodes concrètes en plus des méthodes abstraites."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Que désigne le terme « constructeur » dans une classe ?",
+    "choices": [
+      "Une méthode appelée automatiquement à la création d'un objet pour l'initialiser",
+      "Une méthode appelée à la destruction de l'objet",
+      "Une variable statique de la classe",
+      "Une méthode qui ne peut pas avoir de paramètres"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : le constructeur initialise l'état de l'objet au moment de son instanciation.",
+      "C'est le rôle du destructeur (ou finalize/dispose selon le langage), pas du constructeur.",
+      "Un constructeur est une méthode spéciale, pas une variable.",
+      "Un constructeur peut tout à fait accepter des paramètres (constructeur paramétré)."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Qu'est-ce que la surcharge de méthode (« overloading ») ?",
+    "choices": [
+      "Redéfinir une méthode héritée dans une sous-classe avec la même signature",
+      "Définir plusieurs méthodes de même nom mais avec des paramètres différents dans une même classe",
+      "Appeler une méthode plusieurs fois dans une boucle",
+      "Rendre une méthode privée"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est la définition de la redéfinition (« overriding »), pas de la surcharge.",
+      "C'est exactement la surcharge : même nom, signatures (types/nombre de paramètres) différentes.",
+      "Appeler plusieurs fois une méthode n'a aucun rapport avec la surcharge.",
+      "La visibilité (private/public) est indépendante du concept de surcharge."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Qu'est-ce que la redéfinition de méthode (« overriding ») ?",
+    "choices": [
+      "Créer une méthode totalement nouvelle sans lien avec une classe mère",
+      "Fournir dans une sous-classe une nouvelle implémentation d'une méthode héritée, avec la même signature",
+      "Changer le type de retour d'une méthode uniquement",
+      "Supprimer une méthode héritée"
+    ],
+    "correct": 1,
+    "explanations": [
+      "La redéfinition concerne justement une méthode déjà existante dans la classe mère.",
+      "C'est la définition correcte : la sous-classe fournit son propre comportement pour une méthode héritée.",
+      "Le type de retour doit généralement rester compatible, la redéfinition porte sur l'implémentation entière.",
+      "La méthode reste disponible mais avec un comportement différent, elle n'est pas supprimée."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Que signifie le principe SOLID « S » (Single Responsibility Principle) ?",
+    "choices": [
+      "Une classe ne doit avoir qu'une seule raison de changer, donc une seule responsabilité",
+      "Une classe doit hériter d'une seule autre classe",
+      "Un programme ne doit avoir qu'une seule classe",
+      "Une méthode ne doit contenir qu'une seule instruction"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exactement la définition du principe de responsabilité unique.",
+      "Ce principe ne concerne pas l'héritage simple/multiple mais la cohérence des responsabilités d'une classe.",
+      "Un programme orienté objet comporte naturellement plusieurs classes.",
+      "Le principe porte sur la responsabilité globale de la classe, pas sur la taille des méthodes."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Quel principe SOLID stipule qu'une classe doit être ouverte à l'extension mais fermée à la modification ?",
+    "choices": [
+      "Liskov Substitution Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le LSP concerne la substituabilité des sous-classes à leur classe mère.",
+      "C'est la définition exacte de l'Open/Closed Principle (OCP).",
+      "L'ISP concerne la ségrégation des interfaces pour éviter des dépendances inutiles.",
+      "Le DIP concerne la dépendance vers des abstractions plutôt que des implémentations concrètes."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Qu'est-ce que l'héritage multiple ?",
+    "choices": [
+      "Une classe qui hérite de plusieurs classes mères à la fois",
+      "Une classe qui a plusieurs constructeurs",
+      "Une classe instanciée plusieurs fois",
+      "Une méthode appelée par plusieurs objets"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exactement la définition : une classe fille hérite simultanément de plusieurs classes de base.",
+      "Plusieurs constructeurs relèvent de la surcharge, pas de l'héritage multiple.",
+      "Instancier plusieurs fois une classe n'a aucun rapport avec l'héritage multiple.",
+      "Le partage d'une méthode entre objets est un usage normal de la POO, sans rapport direct."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Pourquoi Java n'autorise-t-il pas l'héritage multiple de classes (contrairement au C++) ?",
+    "choices": [
+      "Java ne supporte pas du tout l'héritage",
+      "Pour éviter l'ambiguïté du « problème du diamant »",
+      "Parce que Java est un langage interprété",
+      "Parce que Java n'a pas de classes abstraites"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Java supporte pleinement l'héritage simple ainsi que l'implémentation multiple d'interfaces.",
+      "Java a choisi de limiter l'héritage de classes à une seule classe mère notamment pour éviter les ambiguïtés du problème du diamant, en s'appuyant sur les interfaces pour la flexibilité.",
+      "Le fait d'être compilé en bytecode puis exécuté sur la JVM n'est pas la raison de cette restriction.",
+      "Java possède bien des classes abstraites, ce n'est pas lié à cette limitation."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Que représente une association « composition » entre deux classes ?",
+    "choices": [
+      "Une relation faible où les objets sont totalement indépendants",
+      "Une relation forte où l'objet contenu ne peut exister sans l'objet conteneur",
+      "Une relation entre deux méthodes",
+      "Un synonyme strict d'héritage"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est plutôt le cas d'une association simple, plus faible que la composition.",
+      "La composition exprime une dépendance de cycle de vie forte : la destruction du conteneur entraîne celle des objets composés.",
+      "La composition est une relation entre classes/objets, pas entre méthodes.",
+      "La composition est une relation « a-un » (has-a), distincte de l'héritage qui est une relation « est-un » (is-a)."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Quelle relation UML illustre le mieux le principe « est-un » (is-a) ?",
+    "choices": [
+      "Composition",
+      "Agrégation",
+      "Héritage",
+      "Dépendance"
+    ],
+    "correct": 2,
+    "explanations": [
+      "La composition exprime plutôt une relation « fait partie de » (part-of), pas « est-un ».",
+      "L'agrégation exprime aussi une relation « a-un », plus faible que la composition.",
+      "L'héritage exprime la spécialisation : une sous-classe « est-un » type particulier de sa classe mère.",
+      "La dépendance exprime qu'une classe utilise une autre, sans relation de type."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Qu'appelle-t-on une méthode « virtuelle » (concept général, notamment en C++) ?",
+    "choices": [
+      "Une méthode qui n'existe qu'en mémoire vive",
+      "Une méthode qui peut être redéfinie dans les classes dérivées et dont l'appel est résolu au runtime (liaison dynamique)",
+      "Une méthode qui ne fait rien",
+      "Une méthode statique uniquement"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Toutes les méthodes résident en mémoire à l'exécution, ce n'est pas spécifique au mot « virtuelle ».",
+      "C'est la définition correcte : elle permet le polymorphisme grâce à la résolution dynamique de l'appel selon le type réel de l'objet.",
+      "Une méthode virtuelle peut avoir une implémentation complète, elle n'est pas nécessairement vide.",
+      "Une méthode statique appartient à la classe et n'est pas concernée par la liaison dynamique."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Quel est le rôle d'un destructeur dans une classe ?",
+    "choices": [
+      "Initialiser les attributs de l'objet",
+      "Libérer les ressources détenues par l'objet avant sa destruction",
+      "Créer une copie de l'objet",
+      "Comparer deux objets"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est le rôle du constructeur, pas du destructeur.",
+      "Le destructeur est appelé lors de la destruction de l'objet pour libérer proprement les ressources (mémoire, fichiers...).",
+      "C'est le rôle d'un constructeur de copie, pas d'un destructeur.",
+      "La comparaison d'objets relève d'une méthode dédiée (equals, operator==...), pas du destructeur."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Qu'est-ce que l'attribut de visibilité « protected » permet en général ?",
+    "choices": [
+      "L'accès uniquement depuis la classe elle-même",
+      "L'accès depuis la classe elle-même et ses sous-classes",
+      "L'accès depuis n'importe quelle classe du programme",
+      "Aucun accès, même en interne"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est la définition de « private », pas de « protected ».",
+      "C'est exact : protected ouvre l'accès à la classe et à ses descendants, contrairement à private.",
+      "C'est la définition de « public », pas de « protected ».",
+      "protected autorise un accès restreint mais réel, il n'interdit pas tout accès."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Qu'est-ce qu'un « design pattern » (patron de conception) ?",
+    "choices": [
+      "Un bug connu et documenté",
+      "Une solution réutilisable à un problème de conception récurrent en POO",
+      "Un langage de programmation",
+      "Un outil de compilation"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Un design pattern n'est pas un défaut, c'est au contraire une bonne pratique éprouvée.",
+      "C'est la définition correcte : un modèle éprouvé pour résoudre un problème de conception qui revient souvent.",
+      "Un design pattern est un concept indépendant du langage, applicable dans plusieurs langages POO.",
+      "Un design pattern n'est pas un logiciel, c'est une solution conceptuelle."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Le patron de conception Singleton garantit quoi ?",
+    "choices": [
+      "Qu'une classe ne peut avoir aucune instance",
+      "Qu'une classe ne peut avoir qu'une seule instance accessible globalement",
+      "Que toutes les instances sont identiques en mémoire mais multiples",
+      "Qu'une classe hérite d'une seule autre classe"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le Singleton garantit au contraire l'existence d'exactement une instance, pas zéro.",
+      "C'est exactement l'objectif du patron Singleton : une unique instance, avec un point d'accès global.",
+      "Le Singleton assure qu'il n'existe qu'une seule instance, pas plusieurs instances identiques.",
+      "Ce point concerne l'héritage, sans rapport avec le patron Singleton."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Qu'est-ce que le couplage faible (« loose coupling ») entre classes ?",
+    "choices": [
+      "Une forte dépendance directe entre les classes",
+      "Une dépendance minimisée entre classes, facilitant la maintenance et les tests",
+      "L'absence totale de communication entre classes",
+      "Le fait de mettre tout le code dans une seule classe"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est l'inverse : un couplage fort signifie une forte dépendance, ce qu'on cherche justement à réduire.",
+      "C'est la définition correcte : moins les classes dépendent les unes des autres, plus elles sont faciles à faire évoluer ou tester isolément.",
+      "Un couplage faible n'empêche pas toute communication, il la rend simplement moins rigide (souvent via des interfaces).",
+      "Tout regrouper dans une seule classe est l'opposé de la modularité recherchée par un couplage faible."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Qu'est-ce que la cohésion forte (« high cohesion ») d'une classe ?",
+    "choices": [
+      "Le fait qu'une classe regroupe des responsabilités très diverses et sans lien",
+      "Le fait que les éléments d'une classe soient étroitement liés autour d'une responsabilité claire",
+      "Le fait qu'une classe hérite de plusieurs interfaces",
+      "Le fait qu'une classe soit très volumineuse"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une cohésion forte est justement l'inverse : des responsabilités homogènes, pas dispersées.",
+      "C'est la bonne définition : tous les éléments de la classe concourent à un objectif cohérent et bien défini.",
+      "L'implémentation de plusieurs interfaces n'est pas, en soi, un indicateur de cohésion.",
+      "La taille d'une classe n'est pas directement corrélée à sa cohésion."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Que signifie « instancier » une classe ?",
+    "choices": [
+      "Créer un objet concret à partir du modèle défini par la classe",
+      "Supprimer une classe du code source",
+      "Hériter d'une classe",
+      "Transformer une classe en interface"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exactement le sens du terme : créer un objet (instance) selon le plan fourni par la classe.",
+      "Instancier ne supprime rien, cela crée un nouvel objet en mémoire.",
+      "Hériter est un mécanisme entre classes, différent de l'instanciation d'un objet.",
+      "Transformer une classe en interface n'est pas ce que signifie « instancier »."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Quel terme désigne l'ensemble des attributs et méthodes définissant le comportement partagé de tous les objets d'une classe ?",
+    "choices": [
+      "Instance",
+      "Classe",
+      "Objet",
+      "Package"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une instance est un objet particulier créé à partir de la classe, pas la définition elle-même.",
+      "C'est la classe qui définit la structure (attributs) et le comportement (méthodes) communs à tous ses objets.",
+      "Un objet est une réalisation concrète (instance) de la classe, pas la définition générale.",
+      "Un package est un mécanisme d'organisation du code, pas la définition d'un comportement partagé."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Pourquoi préfère-t-on souvent la composition à l'héritage dans la conception orientée objet moderne ?",
+    "choices": [
+      "Parce que l'héritage est interdit dans la plupart des langages",
+      "Parce que la composition réduit le couplage et évite la fragilité des hiérarchies d'héritage profondes",
+      "Parce que la composition est plus rapide à l'exécution dans tous les cas",
+      "Parce que l'héritage empêche toute réutilisation de code"
+    ],
+    "correct": 1,
+    "explanations": [
+      "L'héritage reste un mécanisme standard disponible dans la quasi-totalité des langages orientés objet.",
+      "C'est la raison couramment avancée (principe « favor composition over inheritance ») : plus de flexibilité et moins de dépendances rigides.",
+      "La performance dépend du contexte, ce n'est pas l'argument principal de ce principe de conception.",
+      "L'héritage permet justement la réutilisation de code, ce qui n'est pas le problème visé par ce principe."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Qu'est-ce qu'une méthode statique dans une classe ?",
+    "choices": [
+      "Une méthode liée à la classe elle-même, appelable sans créer d'instance",
+      "Une méthode qui ne peut jamais être appelée",
+      "Une méthode privée par défaut",
+      "Une méthode qui retourne toujours la même valeur"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : elle appartient à la classe et peut être invoquée sans instancier d'objet.",
+      "Une méthode statique est parfaitement appelable, simplement d'une manière différente (via la classe).",
+      "La visibilité (public/private) est indépendante du fait d'être statique.",
+      "Le résultat d'une méthode statique dépend de ses paramètres et de son implémentation, pas d'une constance systématique."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Qu'est-ce que l'abstraction en POO ?",
+    "choices": [
+      "Modéliser un concept en ne retenant que ses caractéristiques essentielles pour le contexte donné",
+      "Cacher totalement le code source d'une application",
+      "Compresser un programme pour réduire sa taille",
+      "Supprimer les commentaires du code"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exactement le principe d'abstraction : simplifier la réalité en ne gardant que l'essentiel pertinent.",
+      "La dissimulation du code source n'est pas ce que désigne l'abstraction en POO (cela relève plutôt de la compilation/obfuscation).",
+      "La compression n'a aucun rapport avec l'abstraction en programmation orientée objet.",
+      "La suppression de commentaires est une opération de nettoyage, sans lien avec l'abstraction."
+    ]
+  },
+  {
+    "category": "POO",
+    "question": "Que représente un « attribut » dans une classe ?",
+    "choices": [
+      "Une fonction membre de la classe",
+      "Une donnée membre qui caractérise l'état d'un objet",
+      "Un commentaire dans le code",
+      "Le nom de la classe"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une fonction membre est appelée une méthode, pas un attribut.",
+      "C'est la bonne définition : un attribut (ou champ) stocke une information décrivant l'état de l'objet.",
+      "Un commentaire n'a aucune valeur exécutable ni représentative de l'état d'un objet.",
+      "Le nom de la classe identifie le type, ce n'est pas un attribut d'instance."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Quel mot-clé C++ permet de définir une fonction virtuelle pure, rendant sa classe abstraite ?",
+    "choices": [
+      "virtual seul",
+      "= 0 après la déclaration de la méthode virtuelle",
+      "abstract",
+      "pure"
+    ],
+    "correct": 1,
+    "explanations": [
+      "`virtual` seul rend la méthode redéfinissable mais n'oblige pas les sous-classes à l'implémenter.",
+      "La syntaxe `virtual type nom(...) = 0;` définit une fonction virtuelle pure, rendant la classe abstraite (non instanciable).",
+      "Le mot-clé `abstract` n'existe pas en C++ standard (contrairement à Java ou C#).",
+      "`pure` n'est pas un mot-clé du C++ standard."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que fait l'opérateur `new` en C++ ?",
+    "choices": [
+      "Il déclare une nouvelle variable locale",
+      "Il alloue dynamiquement de la mémoire sur le tas et appelle le constructeur de l'objet",
+      "Il détruit un objet",
+      "Il compare deux objets"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une simple déclaration locale se fait sans `new`, sur la pile.",
+      "`new` réserve de la mémoire sur le tas (heap) et initialise l'objet via son constructeur.",
+      "C'est le rôle de `delete`, pas de `new`.",
+      "La comparaison d'objets se fait via des opérateurs dédiés (==, <...), pas `new`."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "À quoi sert le destructeur virtuel dans une classe de base destinée à être héritée ?",
+    "choices": [
+      "À empêcher toute destruction d'objet",
+      "À garantir que le bon destructeur (de la classe dérivée) est appelé lors d'une destruction via un pointeur de base",
+      "À accélérer l'exécution du programme",
+      "Il n'a aucune utilité particulière"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le destructeur virtuel permet au contraire une destruction correcte et complète de l'objet.",
+      "C'est exactement son rôle : sans lui, détruire un objet dérivé via un pointeur de base ne libérerait pas correctement les ressources de la classe dérivée.",
+      "Le mécanisme de virtualité ajoute un léger coût, il n'accélère pas l'exécution.",
+      "Son utilité est cruciale dès qu'on utilise le polymorphisme avec suppression via pointeur de base."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que représente un « smart pointer » comme `std::unique_ptr` en C++ moderne ?",
+    "choices": [
+      "Un pointeur classique sans particularité",
+      "Un objet qui gère automatiquement la durée de vie (libération) de la mémoire qu'il pointe",
+      "Un pointeur uniquement utilisable dans les threads",
+      "Une fonction de tri de pointeurs"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Un smart pointer ajoute justement une gestion automatique absente d'un pointeur brut.",
+      "C'est exactement sa raison d'être : la mémoire est libérée automatiquement quand le smart pointer est détruit, évitant les fuites.",
+      "Les smart pointers sont utilisables partout, pas uniquement dans un contexte multithread.",
+      "Cela n'a aucun rapport avec un tri, c'est un mécanisme de gestion de mémoire (RAII)."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que signifie l'acronyme RAII en C++ ?",
+    "choices": [
+      "Random Access Iterator Interface",
+      "Resource Acquisition Is Initialization",
+      "Runtime Allocation Is Immediate",
+      "Recursive Algorithm Implementation Interface"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Ce sigle concerne les itérateurs, mais RAII désigne autre chose.",
+      "RAII signifie que l'acquisition d'une ressource (mémoire, fichier...) est liée à l'initialisation d'un objet, et sa libération à la destruction de celui-ci.",
+      "Ce n'est pas la signification standard de RAII en C++.",
+      "Ce sigle n'est pas la définition reconnue de RAII."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Quelle est la différence entre `struct` et `class` en C++ ?",
+    "choices": [
+      "Aucune différence fonctionnelle, hormis la visibilité par défaut (public pour struct, private pour class)",
+      "struct ne peut pas avoir de méthodes",
+      "class ne peut pas hériter d'une autre classe",
+      "struct ne peut pas être utilisée avec des templates"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : en C++, les deux mots-clés sont presque interchangeables, seule la visibilité par défaut des membres diffère.",
+      "Une struct en C++ peut parfaitement contenir des méthodes, contrairement au C pur.",
+      "Une class peut hériter normalement d'une ou plusieurs autres classes.",
+      "struct peut être utilisée avec des templates exactement comme class."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Qu'est-ce qu'un template en C++ ?",
+    "choices": [
+      "Un fichier de configuration du projet",
+      "Un mécanisme de programmation générique permettant d'écrire du code indépendant du type manipulé",
+      "Un patron de conception spécifique à l'héritage multiple",
+      "Un type de boucle"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Un template n'est pas un fichier de configuration, c'est une construction du langage.",
+      "C'est exactement sa fonction : écrire des fonctions ou classes génériques, instanciées pour différents types (ex : std::vector<T>).",
+      "Un template n'est pas lié spécifiquement à l'héritage multiple.",
+      "Un template n'a aucun rapport avec les structures de boucle (for, while)."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que fait l'opérateur `delete` sur un pointeur alloué avec `new` ?",
+    "choices": [
+      "Il met simplement le pointeur à NULL sans libérer la mémoire",
+      "Il appelle le destructeur de l'objet et libère la mémoire allouée",
+      "Il alloue de la mémoire supplémentaire",
+      "Il copie l'objet"
+    ],
+    "correct": 1,
+    "explanations": [
+      "`delete` fait plus que mettre à NULL ; d'ailleurs il faut le faire manuellement après pour éviter un pointeur pendouillant.",
+      "C'est le comportement correct : `delete` détruit proprement l'objet (appel du destructeur) puis libère la mémoire associée.",
+      "C'est l'inverse de `new`, `delete` libère de la mémoire, il n'en alloue pas.",
+      "La copie d'objet se fait via un constructeur de copie ou un opérateur d'affectation, pas via `delete`."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Quelle bibliothèque standard fournit des conteneurs comme `vector`, `map`, `list` en C++ ?",
+    "choices": [
+      "STL (Standard Template Library)",
+      "JDK",
+      "Boost obligatoirement",
+      "POSIX"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : la STL fournit conteneurs, algorithmes et itérateurs génériques en C++ standard.",
+      "Le JDK est l'environnement de développement Java, sans rapport avec le C++.",
+      "Boost est une bibliothèque tierce utile mais non obligatoire, distincte de la STL standard.",
+      "POSIX est une norme système (appels systèmes, threads...), pas une bibliothèque de conteneurs C++."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que représente le mot-clé `const` appliqué à une méthode membre, ex. `int getX() const;` ?",
+    "choices": [
+      "La méthode ne peut jamais être appelée",
+      "La méthode s'engage à ne pas modifier l'état de l'objet sur lequel elle est appelée",
+      "La méthode retourne toujours une constante entière",
+      "La méthode est automatiquement statique"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une méthode const reste normalement appelable, y compris sur des objets non constants.",
+      "C'est exact : elle garantit au compilateur et à l'appelant qu'elle ne modifie pas les membres de l'objet (sauf mutable).",
+      "Le type de retour (int ici) est indépendant du mot-clé const placé après la signature.",
+      "Le caractère const d'une méthode ne la rend pas statique ; elle reste liée à une instance."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Qu'est-ce que la surcharge d'opérateurs (« operator overloading ») en C++ ?",
+    "choices": [
+      "La possibilité de redéfinir le comportement d'opérateurs (+, ==, <<...) pour des types définis par l'utilisateur",
+      "Une erreur de compilation fréquente",
+      "Un mécanisme réservé aux types natifs comme int",
+      "L'impossibilité d'utiliser des opérateurs sur des objets"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exactement la définition : personnaliser le comportement des opérateurs pour ses propres classes.",
+      "C'est une fonctionnalité standard et volontaire du langage, pas une erreur.",
+      "C'est l'inverse : elle sert justement à étendre les opérateurs à des types définis par l'utilisateur, pas aux types natifs.",
+      "La surcharge d'opérateurs permet au contraire d'utiliser des opérateurs naturellement sur des objets."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Quelle est la différence entre passage par référence (`&`) et passage par pointeur (`*`) en C++ ?",
+    "choices": [
+      "Aucune, ce sont des synonymes stricts",
+      "Une référence doit obligatoirement être initialisée et ne peut pas être réassignée à un autre objet, contrairement à un pointeur",
+      "Un pointeur ne peut jamais être NULL",
+      "Une référence est toujours plus lente qu'un pointeur"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Bien que proches en usage, les deux ont des règles distinctes (initialisation, réassignation, nullité).",
+      "C'est la différence clé : une référence est un alias fixe vers un objet existant, alors qu'un pointeur peut être réassigné ou être nul.",
+      "Un pointeur peut parfaitement valoir NULL/nullptr, contrairement à une référence.",
+      "En pratique, une référence est souvent implémentée de façon aussi efficace qu'un pointeur, sans surcoût systématique."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que signifie le mot-clé `virtual` appliqué à une méthode dans une classe de base ?",
+    "choices": [
+      "La méthode ne peut être appelée que depuis la classe de base",
+      "La méthode peut être redéfinie dans les classes dérivées avec liaison dynamique (résolution à l'exécution)",
+      "La méthode est automatiquement privée",
+      "La méthode ne prend aucun paramètre"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une méthode virtuelle est justement destinée à être appelée aussi via les sous-classes.",
+      "C'est exact : `virtual` active le polymorphisme dynamique, l'implémentation appelée dépend du type réel de l'objet.",
+      "La visibilité (public/private/protected) est indépendante du mot-clé virtual.",
+      "Une méthode virtuelle peut avoir n'importe quelle liste de paramètres, comme toute méthode."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que fait la STL `std::sort` par défaut sur un `std::vector<int>` ?",
+    "choices": [
+      "Elle trie les éléments par ordre décroissant",
+      "Elle trie les éléments par ordre croissant",
+      "Elle inverse simplement l'ordre du vecteur",
+      "Elle supprime les doublons"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Par défaut, `std::sort` utilise l'opérateur `<`, ce qui donne un tri croissant, pas décroissant.",
+      "C'est le comportement par défaut : tri croissant, sauf si un comparateur personnalisé est fourni.",
+      "L'inversion se ferait avec `std::reverse`, pas `std::sort`.",
+      "La suppression de doublons nécessite une fonction distincte (ex : std::unique), pas std::sort seul."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Qu'est-ce qu'une exception en C++ (`try`/`catch`/`throw`) ?",
+    "choices": [
+      "Un mécanisme de gestion d'erreurs permettant de transférer le contrôle vers un gestionnaire dédié",
+      "Un type de boucle spécial",
+      "Une fonction mathématique",
+      "Un commentaire de code"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exactement le rôle des exceptions : signaler et traiter des situations anormales sans code de retour explicite partout.",
+      "Les exceptions n'ont aucun rapport avec les structures de boucle.",
+      "Ce mécanisme concerne la gestion des erreurs, pas les calculs mathématiques.",
+      "Un commentaire ne participe pas à l'exécution, contrairement au mécanisme d'exceptions."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que fait le mot-clé `override` en C++11 et versions ultérieures ?",
+    "choices": [
+      "Il force la suppression d'une méthode héritée",
+      "Il indique explicitement qu'une méthode redéfinit une méthode virtuelle de la classe de base, avec vérification par le compilateur",
+      "Il rend une méthode privée",
+      "Il crée automatiquement un constructeur"
+    ],
+    "correct": 1,
+    "explanations": [
+      "`override` ne supprime rien, il documente et vérifie une redéfinition.",
+      "C'est exact : il permet au compilateur de signaler une erreur si la signature ne correspond à aucune méthode virtuelle de la base, évitant des bugs silencieux.",
+      "`override` ne modifie pas la visibilité de la méthode.",
+      "`override` ne génère aucun constructeur, il concerne uniquement les méthodes virtuelles redéfinies."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Quelle est la différence entre allocation sur la pile (stack) et sur le tas (heap) en C++ ?",
+    "choices": [
+      "Aucune différence de gestion",
+      "La pile est gérée automatiquement (durée de vie liée au bloc), le tas nécessite une gestion manuelle ou via smart pointers",
+      "Le tas est toujours plus rapide que la pile",
+      "La pile ne peut contenir que des entiers"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Les deux zones ont des règles de gestion de durée de vie très différentes.",
+      "C'est exact : les objets sur la pile sont automatiquement détruits en sortie de bloc, alors que ceux sur le tas doivent être libérés explicitement (ou via RAII/smart pointers).",
+      "En général, la pile est plus rapide pour l'allocation/désallocation que le tas, c'est l'inverse de cette affirmation.",
+      "La pile peut contenir des objets de nombreux types, pas seulement des entiers."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que fait un constructeur de copie en C++ ?",
+    "choices": [
+      "Il initialise un nouvel objet en copiant les données d'un objet existant du même type",
+      "Il détruit l'objet original après la copie",
+      "Il compare deux objets pour vérifier leur égalité",
+      "Il convertit l'objet en une chaîne de caractères"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : il crée un nouvel objet dont l'état initial reproduit celui de l'objet source.",
+      "L'objet original reste intact après une copie, il n'est pas détruit.",
+      "La comparaison se ferait via un opérateur `==` surchargé, pas via le constructeur de copie.",
+      "La conversion en chaîne se ferait via une méthode dédiée (ex : to_string), pas via le constructeur de copie."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Qu'est-ce que l'espace de noms (`namespace`) en C++ ?",
+    "choices": [
+      "Un mécanisme pour organiser le code et éviter les conflits de noms entre identifiants",
+      "Un type de variable",
+      "Une bibliothèque graphique",
+      "Un synonyme de classe"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exactement son rôle : regrouper des identifiants sous un nom pour éviter les collisions (ex : std::).",
+      "Un namespace n'est pas un type, c'est un mécanisme de portée et d'organisation.",
+      "Aucun rapport avec une bibliothèque graphique, c'est purement une organisation du code.",
+      "Un namespace regroupe des déclarations, mais n'est pas équivalent à une classe (pas de membres/instances)."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que fait l'opérateur `<<` appliqué à `std::cout` (ex. `std::cout << \"Bonjour\";`) ?",
+    "choices": [
+      "Il décale des bits vers la gauche uniquement",
+      "Il insère (affiche) la donnée dans le flux de sortie standard",
+      "Il compare deux flux",
+      "Il lit une entrée utilisateur"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est son sens original en arithmétique binaire, mais ici il est surchargé pour les flux.",
+      "Sur `std::cout`, `<<` est surchargé comme opérateur d'insertion pour afficher des données à l'écran.",
+      "La comparaison de flux ne se fait pas via `<<`.",
+      "La lecture d'entrée utilise plutôt `std::cin >>`, pas `<<` sur cout."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Quel est l'intérêt principal de l'héritage multiple en C++ (autorisé contrairement à Java) ?",
+    "choices": [
+      "Il est interdit en C++ également",
+      "Permettre à une classe de combiner les comportements de plusieurs classes de base, au prix d'une complexité accrue (ex : problème du diamant)",
+      "Accélérer systématiquement l'exécution du programme",
+      "Remplacer totalement les interfaces"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le C++ autorise bel et bien l'héritage multiple de classes, contrairement à Java.",
+      "C'est l'intérêt principal, mais cela introduit des risques d'ambiguïté (diamant) nécessitant des solutions comme l'héritage virtuel.",
+      "L'héritage multiple n'apporte aucun gain de performance en soi.",
+      "Le C++ conserve la possibilité d'utiliser des classes abstraites comme interfaces, l'héritage multiple ne les remplace pas totalement."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Qu'est-ce qu'une fonction `inline` en C++ ?",
+    "choices": [
+      "Une fonction qui ne peut jamais être appelée récursivement",
+      "Une suggestion au compilateur de substituer le corps de la fonction directement à chaque appel, pour éviter le coût d'appel",
+      "Une fonction obligatoirement écrite dans un fichier .cpp séparé",
+      "Une fonction qui retourne void uniquement"
+    ],
+    "correct": 1,
+    "explanations": [
+      "`inline` n'interdit pas la récursivité, même si l'inlining réel devient alors moins probable.",
+      "C'est exact : c'est une optimisation potentielle qui évite le surcoût d'un appel de fonction classique, à l'appréciation du compilateur.",
+      "Une fonction inline est en général définie dans l'en-tête (.h), pas isolée dans un .cpp.",
+      "Une fonction inline peut avoir n'importe quel type de retour, pas seulement void."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que signifie `nullptr` introduit en C++11 ?",
+    "choices": [
+      "Un synonyme strict de 0 pour tous les types",
+      "Une valeur typée représentant un pointeur nul, plus sûre que l'ancien usage de NULL/0",
+      "Une erreur de compilation volontaire",
+      "Une fonction de nettoyage mémoire"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Contrairement à 0/NULL, nullptr possède son propre type (std::nullptr_t), évitant certaines ambiguïtés de surcharge.",
+      "C'est exact : nullptr améliore la sécurité de typage par rapport à l'ancienne convention NULL (souvent définie comme 0).",
+      "nullptr est une valeur valide du langage, elle ne provoque aucune erreur de compilation en soi.",
+      "nullptr ne nettoie rien en mémoire, c'est simplement une valeur de pointeur nul."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Quelle est la fonction du mot-clé `friend` en C++ ?",
+    "choices": [
+      "Rendre une classe totalement publique",
+      "Autoriser une fonction ou une classe externe à accéder aux membres privés/protégés d'une classe",
+      "Créer automatiquement une relation d'héritage",
+      "Supprimer l'encapsulation de tout le programme"
+    ],
+    "correct": 1,
+    "explanations": [
+      "`friend` ne change pas la visibilité générale de la classe pour tout le monde, seulement pour l'entité désignée.",
+      "C'est exact : une fonction ou classe déclarée friend obtient un accès privilégié aux membres non publics.",
+      "`friend` ne crée aucune relation d'héritage entre les entités concernées.",
+      "L'encapsulation reste intacte pour tout le reste du programme, `friend` n'accorde un accès qu'à l'entité désignée."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Qu'est-ce qu'un itérateur en C++ (STL) ?",
+    "choices": [
+      "Un objet qui permet de parcourir les éléments d'un conteneur de façon générique",
+      "Une boucle for spécifique aux tableaux",
+      "Un type de pointeur interdit en C++",
+      "Une fonction qui trie automatiquement un conteneur"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exactement sa définition : un objet abstrait de parcours, utilisable de façon similaire sur différents conteneurs (vector, list, map...).",
+      "Un itérateur est un concept plus général qu'une simple boucle for sur tableau, applicable à des structures non contiguës.",
+      "Un itérateur se comporte souvent comme un pointeur et son usage est parfaitement autorisé et central en C++.",
+      "Un itérateur sert à parcourir, pas à trier ; le tri utilise des algorithmes comme std::sort."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que représente `std::string` en C++ par rapport à un `char*` classique ?",
+    "choices": [
+      "Une classe de la bibliothèque standard qui gère automatiquement la mémoire et offre des méthodes pratiques de manipulation de chaînes",
+      "Un simple alias de char*",
+      "Un type réservé uniquement à l'affichage",
+      "Une fonction de conversion de nombres"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : std::string encapsule la gestion mémoire et fournit de nombreuses méthodes (concat, recherche, taille...) absentes d'un char* brut.",
+      "std::string est une véritable classe avec gestion dynamique, ce n'est pas un simple alias de pointeur.",
+      "std::string sert à la manipulation générale de chaînes, pas uniquement à l'affichage.",
+      "Ce n'est pas une fonction de conversion, mais un type conteneur pour du texte."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que fait le mot-clé `explicit` devant un constructeur à un seul paramètre ?",
+    "choices": [
+      "Il rend le constructeur privé automatiquement",
+      "Il empêche les conversions implicites via ce constructeur",
+      "Il oblige à toujours fournir ce paramètre",
+      "Il supprime le constructeur par défaut"
+    ],
+    "correct": 1,
+    "explanations": [
+      "`explicit` n'a aucun effet sur la visibilité du constructeur.",
+      "C'est exact : il empêche le compilateur d'utiliser ce constructeur pour convertir implicitement un type en un autre.",
+      "Le paramètre reste requis dès lors que le constructeur existe, indépendamment de `explicit`, qui concerne les conversions implicites.",
+      "`explicit` n'agit pas sur l'existence du constructeur par défaut, il concerne un constructeur donné à un paramètre."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Quel est le rôle de l'opérateur de résolution de portée `::` en C++ ?",
+    "choices": [
+      "Accéder à un membre via un pointeur",
+      "Indiquer explicitement à quel espace de noms, classe ou portée appartient un identifiant",
+      "Multiplier deux valeurs",
+      "Convertir un type en un autre"
+    ],
+    "correct": 1,
+    "explanations": [
+      "L'accès via pointeur utilise `->`, pas `::`.",
+      "C'est exact : `::` précise la portée d'un identifiant, ex : `std::vector` ou `MaClasse::maMethode`.",
+      "`::` n'est pas un opérateur arithmétique.",
+      "La conversion de type se fait par un cast (static_cast, etc.), pas par `::`."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Qu'est-ce que la « Standard Template Library » (STL) fournit principalement ?",
+    "choices": [
+      "Des conteneurs, des algorithmes génériques et des itérateurs",
+      "Uniquement des fonctions mathématiques",
+      "Un environnement de développement intégré",
+      "Un compilateur alternatif"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : conteneurs (vector, map...), algorithmes (sort, find...) et itérateurs forment le cœur de la STL.",
+      "Les fonctions mathématiques sont plutôt dans <cmath>, la STL couvre un périmètre bien plus large.",
+      "La STL est une bibliothèque, pas un IDE.",
+      "La STL n'est pas un compilateur, elle s'utilise avec n'importe quel compilateur C++ conforme."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que se passe-t-il si une exception est levée (`throw`) mais qu'aucun `catch` ne la traite ?",
+    "choices": [
+      "Le programme l'ignore silencieusement et continue",
+      "La fonction `std::terminate` est appelée, ce qui arrête le programme",
+      "Le compilateur refuse de compiler le programme",
+      "L'exception est automatiquement convertie en valeur de retour"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une exception non attrapée n'est jamais ignorée silencieusement en C++.",
+      "C'est le comportement standard : une exception non capturée provoque l'appel de std::terminate et l'arrêt anormal du programme.",
+      "Ce problème se manifeste à l'exécution, pas à la compilation.",
+      "Une exception n'est jamais convertie automatiquement en valeur de retour classique."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que représente un pointeur `this` dans une méthode membre non statique ?",
+    "choices": [
+      "Un pointeur vers la classe elle-même (le type)",
+      "Un pointeur vers l'objet courant sur lequel la méthode a été appelée",
+      "Un pointeur toujours nul",
+      "Une variable globale du programme"
+    ],
+    "correct": 1,
+    "explanations": [
+      "`this` pointe vers une instance précise, pas vers le type/la classe en général.",
+      "C'est exact : `this` permet à la méthode d'accéder à l'objet sur lequel elle opère, notamment pour désambiguïser des noms.",
+      "`this` pointe vers un objet réel valide dans une méthode non statique, il n'est pas nul en usage normal.",
+      "`this` est local à la méthode et dépend de l'objet appelant, ce n'est pas une variable globale."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Quelle est la différence entre `static_cast` et `dynamic_cast` en C++ ?",
+    "choices": [
+      "Aucune différence, ce sont des synonymes",
+      "static_cast est vérifié à la compilation, dynamic_cast est vérifié à l'exécution (utile avec le polymorphisme)",
+      "dynamic_cast est plus rapide dans tous les cas",
+      "static_cast ne fonctionne que sur les types numériques"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Ils ont des usages et des garanties de sécurité différents.",
+      "C'est exact : dynamic_cast utilise le RTTI pour vérifier à l'exécution la validité d'une conversion vers un type polymorphe, contrairement à static_cast.",
+      "dynamic_cast a un coût supplémentaire à l'exécution lié à cette vérification, il n'est donc pas plus rapide.",
+      "static_cast s'applique à de nombreux types compatibles, pas uniquement numériques."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Qu'est-ce que le « move semantics » (sémantique de déplacement) introduit en C++11 ?",
+    "choices": [
+      "Un mécanisme pour déplacer physiquement des fichiers sur le disque",
+      "Un moyen de transférer les ressources d'un objet temporaire vers un autre sans copie coûteuse",
+      "Une nouvelle syntaxe de boucle for",
+      "Une méthode obligatoire de toutes les classes"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Cela n'a aucun rapport avec le système de fichiers, c'est une notion purement mémoire/objet.",
+      "C'est exact : via les références rvalue (&&) et le constructeur/affectation de déplacement, les ressources sont transférées plutôt que copiées, ce qui améliore les performances.",
+      "Ce concept n'a aucun rapport avec la syntaxe des boucles.",
+      "Le déplacement n'est pas obligatoire ; le compilateur en génère un par défaut sous conditions, mais rien n'oblige une classe à l'utiliser."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Que fait l'instruction `#include <iostream>` ?",
+    "choices": [
+      "Elle définit une fonction main",
+      "Elle inclut les déclarations nécessaires pour utiliser cin/cout (flux d'entrée/sortie standard)",
+      "Elle compile automatiquement le programme",
+      "Elle importe une bibliothèque graphique"
+    ],
+    "correct": 1,
+    "explanations": [
+      "`#include` ne définit aucune fonction, il insère des déclarations issues d'un autre fichier.",
+      "C'est exact : `<iostream>` fournit les déclarations de std::cin, std::cout, std::cerr, etc.",
+      "L'inclusion se fait avant la compilation, elle ne déclenche pas la compilation elle-même.",
+      "`<iostream>` concerne les entrées/sorties texte standard, pas le graphisme."
+    ]
+  },
+  {
+    "category": "C++",
+    "question": "Pourquoi utiliser une liste d'initialisation dans un constructeur (ex. `Point::Point(int x) : x_(x) {}`) plutôt qu'une affectation dans le corps ?",
+    "choices": [
+      "Cela n'a aucun intérêt particulier",
+      "Cela initialise directement les membres (notamment const et références) au moment de leur création, souvent plus efficace",
+      "Cela rend le constructeur privé",
+      "Cela empêche l'héritage de la classe"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Cette pratique a un intérêt réel, notamment pour les membres const, référence, ou de types coûteux à réinitialiser.",
+      "C'est exact : la liste d'initialisation évite une double opération (construction par défaut puis affectation) et est obligatoire pour les membres const/référence.",
+      "La visibilité du constructeur est indépendante de la liste d'initialisation.",
+      "Cette pratique n'a aucun impact sur la possibilité d'hériter de la classe."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Sur quelle plateforme s'exécute un programme Java compilé (bytecode) ?",
+    "choices": [
+      "Directement sur le processeur, sans intermédiaire",
+      "La JVM (Java Virtual Machine)",
+      "Un serveur web obligatoirement",
+      "Le compilateur C"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le bytecode Java n'est pas directement exécuté par le processeur, contrairement à un exécutable natif en C.",
+      "C'est exact : la JVM interprète (ou compile à la volée) le bytecode, ce qui permet la portabilité « write once, run anywhere ».",
+      "Un programme Java n'a pas besoin d'un serveur web pour s'exécuter en général (sauf application web spécifique).",
+      "Le compilateur C n'a aucun rapport avec l'exécution du bytecode Java."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Que signifie le principe « Write Once, Run Anywhere » en Java ?",
+    "choices": [
+      "Le code source doit être écrit une seule fois puis n'est jamais modifiable",
+      "Le bytecode compilé peut s'exécuter sur toute plateforme disposant d'une JVM compatible, sans recompilation",
+      "Java ne fonctionne que sous Windows",
+      "Le code Java doit être réécrit pour chaque système d'exploitation"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le code source reste bien sûr modifiable ; ce principe concerne la portabilité, pas l'immutabilité du code.",
+      "C'est exactement le principe : grâce à la JVM, le même bytecode s'exécute sur différentes plateformes sans modification.",
+      "Java est justement multiplateforme, il fonctionne sous Windows, Linux, macOS, etc.",
+      "C'est l'inverse du principe : le même bytecode n'a pas besoin d'être réécrit selon l'OS grâce à la JVM."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Quel mot-clé Java permet à une classe d'hériter d'une autre classe ?",
+    "choices": [
+      "implements",
+      "extends",
+      "inherits",
+      "super"
+    ],
+    "correct": 1,
+    "explanations": [
+      "`implements` sert à implémenter une interface, pas à hériter d'une classe.",
+      "C'est exact : `extends` établit une relation d'héritage entre une sous-classe et sa classe mère.",
+      "`inherits` n'est pas un mot-clé du langage Java.",
+      "`super` permet d'accéder aux membres de la classe mère depuis une sous-classe, ce n'est pas le mot-clé d'héritage lui-même."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Quel mot-clé permet à une classe d'implémenter une interface en Java ?",
+    "choices": [
+      "extends",
+      "implements",
+      "interface",
+      "import"
+    ],
+    "correct": 1,
+    "explanations": [
+      "`extends` concerne l'héritage entre classes (ou entre interfaces), pas l'implémentation d'une interface par une classe.",
+      "C'est exact : une classe utilise `implements` pour s'engager à fournir le comportement défini par une ou plusieurs interfaces.",
+      "`interface` sert à déclarer une interface, pas à l'implémenter dans une classe.",
+      "`import` sert à utiliser des classes d'autres packages, sans rapport avec l'implémentation d'interface."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Que se passe-t-il si une classe Java implémente une interface sans redéfinir toutes ses méthodes abstraites ?",
+    "choices": [
+      "Le programme compile normalement",
+      "La classe doit elle-même être déclarée abstraite, sinon erreur de compilation",
+      "Java ignore les méthodes manquantes",
+      "Les méthodes manquantes sont générées automatiquement"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Sans implémentation complète ni déclaration abstraite, la compilation échoue.",
+      "C'est la règle : soit toutes les méthodes abstraites sont implémentées, soit la classe doit être marquée `abstract`.",
+      "Java ne peut pas ignorer silencieusement des méthodes d'interface non implémentées.",
+      "Java ne génère aucune implémentation automatique de méthode manquante."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Qu'est-ce que le « garbage collector » en Java ?",
+    "choices": [
+      "Un outil de compilation du code source",
+      "Un mécanisme automatique qui libère la mémoire des objets qui ne sont plus référencés",
+      "Une bibliothèque pour trier des collections",
+      "Un outil de débogage graphique"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le garbage collector agit à l'exécution sur la mémoire, il ne compile pas de code.",
+      "C'est exact : il détecte les objets inaccessibles et libère automatiquement la mémoire correspondante, évitant à l'utilisateur de gérer free/delete.",
+      "Le tri de collections se fait via Collections.sort ou Comparable, sans rapport avec le garbage collector.",
+      "Le garbage collector n'est pas un outil visuel de débogage, il agit en arrière-plan sur la mémoire."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Quelle est la différence entre `==` et `.equals()` pour comparer deux objets String en Java ?",
+    "choices": [
+      "Elles sont strictement équivalentes",
+      "`==` compare les références (adresses), `.equals()` compare le contenu des chaînes",
+      "`.equals()` compare toujours les références",
+      "`==` ne peut pas être utilisé sur des objets"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le résultat peut différer selon que les objets sont ou non la même référence en mémoire.",
+      "C'est exact : `==` teste l'identité d'objet, `.equals()` (redéfini dans String) teste l'égalité de contenu.",
+      "C'est l'inverse : `.equals()` compare le contenu, `==` compare les références.",
+      "`==` est utilisable sur des objets en Java, mais il compare alors les références, pas le contenu."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Que représente le mot-clé `static` appliqué à une méthode en Java ?",
+    "choices": [
+      "La méthode appartient à la classe elle-même et non à une instance particulière",
+      "La méthode ne peut jamais être appelée",
+      "La méthode est automatiquement privée",
+      "La méthode s'exécute uniquement au démarrage du programme"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : une méthode statique peut être appelée via le nom de la classe, sans créer d'objet.",
+      "Une méthode statique est parfaitement appelable, simplement d'une façon différente (ClasseNom.methode()).",
+      "`static` n'implique aucune visibilité particulière ; elle peut être public, private, etc.",
+      "Rien n'empêche d'appeler une méthode statique à tout moment du programme, pas uniquement au démarrage."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Qu'est-ce qu'une exception « checked » en Java (ex. `IOException`) ?",
+    "choices": [
+      "Une exception que le compilateur oblige à gérer (try/catch) ou à déclarer avec `throws`",
+      "Une exception qui ne peut jamais être capturée",
+      "Une exception uniquement liée aux erreurs mathématiques",
+      "Un synonyme d'erreur fatale non récupérable"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : le compilateur impose de traiter ou de propager explicitement ce type d'exception, contrairement aux exceptions non vérifiées (unchecked).",
+      "Une exception checked peut, au contraire, être capturée normalement via try/catch.",
+      "Les exceptions checked couvrent de nombreux cas (E/S, réseau, etc.), pas uniquement les erreurs mathématiques.",
+      "Une exception checked est récupérable et gérable, contrairement à une Error grave (ex : OutOfMemoryError)."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Quelle collection Java garantit l'absence de doublons parmi ses éléments ?",
+    "choices": [
+      "List",
+      "Set",
+      "Map (les valeurs)",
+      "Array"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une List autorise explicitement les doublons et conserve l'ordre d'insertion.",
+      "C'est exact : l'interface Set (ex : HashSet, TreeSet) garantit qu'un élément ne peut apparaître qu'une seule fois.",
+      "Les valeurs d'une Map peuvent se répéter ; ce sont les clés qui sont uniques, pas les valeurs.",
+      "Un tableau Java standard n'impose aucune contrainte d'unicité sur ses éléments."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Que représente une `interface` en Java (avant Java 8) ?",
+    "choices": [
+      "Une classe concrète standard",
+      "Un contrat définissant uniquement des signatures de méthodes (sans implémentation)",
+      "Un type de boucle",
+      "Un fichier de configuration XML"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une interface n'est pas une classe concrète, elle ne peut pas être instanciée directement.",
+      "C'est exact (avant Java 8, sans méthodes par défaut) : une interface ne fait que déclarer des méthodes que les classes implémentantes doivent définir.",
+      "Une interface n'a aucun rapport avec les structures de contrôle comme les boucles.",
+      "Une interface Java est un élément du langage, pas un fichier de configuration externe."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Que permettent les « méthodes par défaut » (`default`) introduites dans les interfaces depuis Java 8 ?",
+    "choices": [
+      "De fournir une implémentation concrète directement dans l'interface",
+      "D'interdire toute implémentation dans les classes concrètes",
+      "De transformer l'interface en classe abstraite obligatoirement",
+      "De supprimer le besoin d'implémenter l'interface"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : les méthodes default fournissent un comportement par défaut réutilisable sans casser la compatibilité des classes existantes.",
+      "Les classes concrètes peuvent toujours redéfinir (override) une méthode default si nécessaire.",
+      "L'interface reste une interface ; elle n'est pas convertie en classe abstraite pour autant.",
+      "Les classes doivent toujours implémenter l'interface pour bénéficier de ses méthodes, la méthode default ne supprime pas ce besoin."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Que fait le bloc `finally` dans une structure `try/catch/finally` ?",
+    "choices": [
+      "Il ne s'exécute que si une exception est levée",
+      "Il s'exécute systématiquement, qu'une exception soit levée ou non (sauf cas extrêmes comme System.exit)",
+      "Il remplace le bloc catch",
+      "Il empêche toute exception de se produire"
+    ],
+    "correct": 1,
+    "explanations": [
+      "`finally` s'exécute aussi en l'absence d'exception, ce n'est pas conditionné à une levée d'exception.",
+      "C'est exact : il sert typiquement à libérer des ressources, qu'il y ait eu erreur ou non.",
+      "`finally` est complémentaire à `catch`, il ne le remplace pas.",
+      "`finally` ne prévient aucune exception, il s'exécute après leur éventuelle survenue."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Quelle est la portée de visibilité la plus restrictive parmi ces modificateurs Java ?",
+    "choices": [
+      "public",
+      "protected",
+      "private",
+      "package-private (par défaut)"
+    ],
+    "correct": 2,
+    "explanations": [
+      "public offre l'accès le plus large, l'opposé d'une restriction maximale.",
+      "protected autorise l'accès depuis le même package et les sous-classes, c'est plus large que private.",
+      "`private` limite l'accès strictement à la classe elle-même, c'est la visibilité la plus restrictive en Java.",
+      "Le modificateur par défaut (sans mot-clé) autorise l'accès à tout le package, plus large que private."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Que se passe-t-il lorsqu'on essaie d'accéder à un élément hors des bornes d'un tableau en Java ?",
+    "choices": [
+      "Le programme continue silencieusement avec une valeur par défaut",
+      "Une exception `ArrayIndexOutOfBoundsException` est levée à l'exécution",
+      "Une erreur de compilation est systématiquement générée",
+      "Le tableau est automatiquement agrandi"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Java ne renvoie pas silencieusement de valeur par défaut dans ce cas, contrairement à certains langages.",
+      "C'est exact : contrairement au C, Java vérifie les bornes à l'exécution et lève cette exception spécifique en cas de dépassement.",
+      "Cette erreur dépend de valeurs à l'exécution (indices), elle n'est en général pas détectable à la compilation.",
+      "Un tableau Java a une taille fixe une fois créé, il ne s'agrandit jamais automatiquement."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Qu'est-ce que la classe `Object` en Java ?",
+    "choices": [
+      "Une classe optionnelle que l'on peut ignorer",
+      "La classe racine (superclasse) dont héritent implicitement toutes les classes Java",
+      "Une interface obligatoire à implémenter manuellement",
+      "Un mot-clé réservé sans classe associée"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Toute classe Java hérite implicitement de Object, ce n'est pas une option.",
+      "C'est exact : chaque classe Java dérive, directement ou indirectement, de java.lang.Object, qui fournit des méthodes comme equals(), toString(), hashCode().",
+      "Object est une classe concrète, pas une interface, et son héritage est implicite et automatique.",
+      "Object est une véritable classe du JDK (java.lang.Object), pas juste un mot-clé."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Quel package Java faut-il importer pour utiliser `ArrayList` ?",
+    "choices": [
+      "java.io",
+      "java.util",
+      "java.lang",
+      "java.net"
+    ],
+    "correct": 1,
+    "explanations": [
+      "java.io concerne les entrées/sorties (fichiers, flux), pas les collections.",
+      "C'est exact : ArrayList, ainsi que HashMap, List, Set, etc., se trouvent dans java.util.",
+      "java.lang est importé automatiquement mais ne contient pas ArrayList (il contient les classes fondamentales comme String, Object).",
+      "java.net concerne la programmation réseau (sockets, URL), pas les collections."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Que représente un constructeur par défaut en Java lorsqu'aucun constructeur n'est écrit explicitement ?",
+    "choices": [
+      "Java refuse de compiler la classe",
+      "Le compilateur génère automatiquement un constructeur sans paramètre",
+      "Il faut obligatoirement écrire un constructeur, sinon erreur",
+      "La classe devient automatiquement abstraite"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une classe sans constructeur explicite compile normalement grâce au constructeur par défaut généré.",
+      "C'est exact : si aucun constructeur n'est défini, le compilateur fournit un constructeur public sans arguments.",
+      "Ce n'est pas obligatoire, précisément parce que Java génère ce constructeur automatiquement en son absence.",
+      "L'absence de constructeur explicite n'a aucun impact sur le caractère abstrait ou non d'une classe."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Qu'est-ce que l'autoboxing en Java ?",
+    "choices": [
+      "La conversion automatique entre un type primitif (ex. int) et sa classe wrapper (ex. Integer)",
+      "Un mécanisme de sécurité du réseau",
+      "La compression automatique du bytecode",
+      "Un type de boucle particulier"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : Java convertit automatiquement, par exemple, un `int` en `Integer` (et inversement, unboxing) selon le contexte.",
+      "L'autoboxing n'a aucun rapport avec la sécurité réseau.",
+      "Cela concerne la conversion de types, pas la compression du bytecode.",
+      "L'autoboxing n'a aucun rapport avec les structures de boucle du langage."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Quelle est la différence entre `ArrayList` et `LinkedList` en Java ?",
+    "choices": [
+      "Aucune, elles sont interchangeables sans conséquence sur la performance",
+      "ArrayList utilise un tableau redimensionnable (accès rapide par index), LinkedList utilise une liste chaînée (insertions/suppressions plus rapides en milieu de liste)",
+      "LinkedList ne peut pas contenir d'objets",
+      "ArrayList ne peut pas être triée"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Bien qu'elles implémentent toutes deux List, leurs performances diffèrent selon les opérations effectuées.",
+      "C'est exact : le choix dépend du type d'opérations dominantes (accès aléatoire vs insertions/suppressions fréquentes).",
+      "LinkedList, comme toute collection Java, contient parfaitement des objets.",
+      "ArrayList peut être triée facilement, par exemple via Collections.sort()."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Que fait le mot-clé `final` appliqué à une variable en Java ?",
+    "choices": [
+      "Il permet de réassigner la variable à volonté",
+      "Il empêche toute réaffectation de la variable après sa première initialisation",
+      "Il rend la variable automatiquement statique",
+      "Il supprime la variable après utilisation"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est l'inverse : `final` interdit justement la réaffectation, contrairement à une variable normale.",
+      "C'est exact : une fois initialisée, une variable final ne peut plus changer de valeur (pour un objet, sa référence reste fixe, pas nécessairement son contenu interne).",
+      "`final` et `static` sont deux mots-clés indépendants aux effets différents.",
+      "`final` ne supprime rien automatiquement, il fige simplement la valeur/référence."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Qu'est-ce que le polymorphisme dynamique illustré par `Animal a = new Chien(); a.crier();` ?",
+    "choices": [
+      "La méthode appelée dépend uniquement du type déclaré (Animal)",
+      "La méthode réellement exécutée est celle redéfinie dans la classe réelle de l'objet (Chien), déterminée à l'exécution",
+      "Une erreur de compilation systématique",
+      "L'impossibilité d'appeler crier() sur a"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est l'inverse : en présence de redéfinition, c'est le type réel de l'objet qui détermine la méthode exécutée, pas seulement le type déclaré.",
+      "C'est exactement le principe du polymorphisme dynamique (liaison tardive) en Java.",
+      "Ce code est parfaitement valide s'il respecte les règles d'héritage, il compile normalement.",
+      "La méthode crier() est bien appelable dès lors qu'elle est définie (ou héritée) dans Animal/Chien."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Que signifie l'acronyme JDK ?",
+    "choices": [
+      "Java Development Kit",
+      "Java Defined Kernel",
+      "Java Data Keeper",
+      "Java Dynamic Kit"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : le JDK regroupe les outils nécessaires au développement Java (compilateur javac, JVM, bibliothèques...).",
+      "Ce n'est pas la signification standard de l'acronyme JDK.",
+      "Ce n'est pas la signification standard de l'acronyme JDK.",
+      "Ce n'est pas la signification standard de l'acronyme JDK."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Quelle est la différence entre JDK et JRE ?",
+    "choices": [
+      "Ce sont des synonymes stricts",
+      "Le JDK inclut les outils de développement (dont le compilateur), le JRE ne contient que ce qu'il faut pour exécuter un programme Java",
+      "Le JRE sert uniquement à compiler du code",
+      "Le JDK ne peut pas exécuter de programme Java"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Ils ont des périmètres différents, l'un englobant l'autre.",
+      "C'est exact : le JRE (Java Runtime Environment) permet d'exécuter des applications Java, tandis que le JDK ajoute les outils de développement (javac, débogueur...).",
+      "C'est l'inverse : le JRE sert à exécuter, pas à compiler (pas de javac dans le JRE seul).",
+      "Le JDK inclut un JRE et peut donc aussi exécuter des programmes Java."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Qu'est-ce qu'un thread en Java ?",
+    "choices": [
+      "Un fil d'exécution permettant l'exécution concurrente de plusieurs tâches au sein d'un même programme",
+      "Un type de collection",
+      "Une méthode de tri",
+      "Un mécanisme exclusivement réseau"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : la classe Thread (ou l'interface Runnable) permet d'exécuter du code de manière concurrente.",
+      "Un thread n'est pas une structure de données de collection.",
+      "Le tri ne relève pas du concept de thread, mais d'algorithmes dédiés.",
+      "Les threads sont utilisés dans de nombreux contextes, pas uniquement réseau."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Que fait la méthode `toString()` héritée de la classe Object si elle n'est pas redéfinie ?",
+    "choices": [
+      "Elle lève systématiquement une exception",
+      "Elle retourne une chaîne peu lisible incluant le nom de la classe et un code de hachage",
+      "Elle retourne toujours une chaîne vide",
+      "Elle convertit l'objet en JSON automatiquement"
+    ],
+    "correct": 1,
+    "explanations": [
+      "L'implémentation par défaut de toString() ne lève pas d'exception, elle retourne simplement une chaîne.",
+      "C'est exact, d'où l'intérêt fréquent de redéfinir toString() pour un affichage plus lisible et pertinent.",
+      "La chaîne retournée n'est pas vide, elle contient au minimum le nom de la classe et un identifiant de hachage.",
+      "Java ne convertit pas automatiquement un objet en JSON sans bibliothèque dédiée (ex : Jackson, Gson)."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Quel est le rôle du mot-clé `super` en Java ?",
+    "choices": [
+      "Accéder aux membres (méthodes/constructeur) de la classe mère depuis une sous-classe",
+      "Créer une nouvelle instance de la classe courante",
+      "Déclarer une méthode abstraite",
+      "Rendre une méthode statique"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : `super.methode()` ou `super()` permettent d'appeler respectivement une méthode ou le constructeur de la classe parente.",
+      "La création d'une instance de la classe courante se ferait avec `new NomClasse()`, pas `super`.",
+      "La déclaration d'une méthode abstraite utilise le mot-clé `abstract`, pas `super`.",
+      "`super` n'a aucun rapport avec le caractère statique d'une méthode."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Que représente une classe interne anonyme (« anonymous class ») en Java ?",
+    "choices": [
+      "Une classe sans nom, définie et instanciée en une seule expression, souvent pour une implémentation ponctuelle d'interface",
+      "Une classe obligatoirement publique",
+      "Une classe qui ne peut contenir aucune méthode",
+      "Un synonyme de classe abstraite"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : elle permet de fournir rapidement une implémentation sans déclarer de classe nommée séparée (souvent remplacée aujourd'hui par les lambdas).",
+      "Une classe anonyme n'a pas de modificateur de visibilité propre puisqu'elle est locale à son contexte d'utilisation.",
+      "Une classe anonyme peut définir et redéfinir des méthodes, c'est même son intérêt principal.",
+      "Une classe anonyme est concrète et instanciée immédiatement, contrairement à une classe abstraite qui ne peut pas l'être directement."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Qu'est-ce qu'une expression lambda en Java (depuis Java 8) ?",
+    "choices": [
+      "Une syntaxe concise pour représenter une implémentation d'interface fonctionnelle (une seule méthode abstraite)",
+      "Un nouveau type de boucle",
+      "Un remplaçant obligatoire de toutes les classes",
+      "Une fonction mathématique intégrée au JDK"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : une lambda comme `(x, y) -> x + y` fournit une implémentation compacte pour une interface fonctionnelle (ex : Comparator, Runnable).",
+      "Les lambdas n'introduisent pas de nouvelle structure de boucle en Java.",
+      "Les lambdas sont un outil supplémentaire, elles ne remplacent pas toutes les classes existantes.",
+      "Une lambda n'est pas une fonction mathématique prédéfinie, c'est une syntaxe pour créer des objets fonctionnels."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Que fait l'instruction `import java.util.*;` en Java ?",
+    "choices": [
+      "Elle importe uniquement la classe ArrayList",
+      "Elle rend accessibles toutes les classes publiques du package java.util sans préfixe complet",
+      "Elle exécute automatiquement le package importé",
+      "Elle supprime le besoin de compiler le code"
+    ],
+    "correct": 1,
+    "explanations": [
+      "`import java.util.*;` importe l'ensemble des classes publiques du package, pas une seule classe spécifique.",
+      "C'est exact : le caractère générique `*` permet d'utiliser toutes les classes de java.util sans écrire leur nom qualifié complet.",
+      "Un import ne déclenche aucune exécution, c'est une simple facilité de référence de classes.",
+      "Le code doit toujours être compilé normalement, l'import ne change rien à cette étape."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Quelle est la signature standard de la méthode principale d'un programme Java exécutable ?",
+    "choices": [
+      "void main()",
+      "public static void main(String[] args)",
+      "int main(void)",
+      "static main(args)"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Cette signature n'est pas reconnue par la JVM comme point d'entrée standard en Java.",
+      "C'est exact : cette signature précise (public, static, void, paramètre String[]) est requise par la JVM pour identifier le point d'entrée.",
+      "Cette signature correspond davantage au C/C++, pas à Java.",
+      "Cette signature incomplète (sans type de retour ni modificateur public) n'est pas valide en Java."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Qu'est-ce qu'une classe `enum` en Java ?",
+    "choices": [
+      "Un type spécial représentant un ensemble fixe de constantes nommées",
+      "Une classe obligatoirement vide",
+      "Un synonyme d'interface",
+      "Une méthode particulière de tri"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : une enum définit un ensemble limité et fixe de valeurs constantes, comme les jours de la semaine ou des statuts.",
+      "Une enum peut contenir des méthodes, des constructeurs et des champs, elle n'est pas nécessairement vide.",
+      "Une enum est un type concret particulier, distinct d'une interface classique.",
+      "Une enum n'a aucun rapport direct avec un algorithme de tri."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Que fait la méthode `equals()` par défaut (héritée d'Object) si elle n'est pas redéfinie ?",
+    "choices": [
+      "Elle compare le contenu des objets champ par champ",
+      "Elle compare les références des objets, comme `==`",
+      "Elle retourne toujours true",
+      "Elle lève systématiquement une exception"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Sans redéfinition, equals() ne compare pas le contenu, seulement l'identité de référence.",
+      "C'est exact : l'implémentation par défaut d'Object.equals() se comporte comme une comparaison de références.",
+      "equals() par défaut ne retourne true que si les deux références pointent vers le même objet, pas systématiquement.",
+      "equals() par défaut ne lève aucune exception, elle retourne un booléen basé sur l'identité."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Pourquoi Java est-il souvent qualifié de langage « fortement typé » ?",
+    "choices": [
+      "Parce que le type des variables peut changer librement à l'exécution",
+      "Parce que chaque variable a un type déclaré vérifié à la compilation, limitant les conversions implicites risquées",
+      "Parce que Java n'a pas de types primitifs",
+      "Parce que Java interdit tout type numérique"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est l'inverse : en Java, le type d'une variable reste fixe une fois déclaré (typage statique).",
+      "C'est exact : le compilateur vérifie la compatibilité des types, ce qui réduit les erreurs de conversion implicite dangereuse.",
+      "Java possède bien des types primitifs (int, double, boolean, char...).",
+      "Java gère au contraire très largement les types numériques (int, long, float, double...)."
+    ]
+  },
+  {
+    "category": "Java",
+    "question": "Qu'est-ce que le package `java.lang` en Java ?",
+    "choices": [
+      "Un package qu'il faut toujours importer manuellement",
+      "Un package fondamental importé automatiquement, contenant des classes comme String, Object, Math, System",
+      "Un outil de traduction de langue",
+      "Une bibliothèque graphique obligatoire"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est justement le seul package importé implicitement par défaut dans tout programme Java.",
+      "C'est exact : java.lang regroupe les classes essentielles utilisées en permanence, sans nécessiter d'import explicite.",
+      "java.lang n'a aucun rapport avec la traduction linguistique, malgré son nom.",
+      "java.lang ne concerne pas le graphisme (ce serait plutôt javax.swing ou javafx)."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Que signifie l'acronyme HTML ?",
+    "choices": [
+      "HyperText Markup Language",
+      "HighText Machine Language",
+      "HyperTransfer Markup Link",
+      "Home Tool Markup Language"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : HTML est le langage de balisage standard pour structurer le contenu des pages web.",
+      "Ce n'est pas la signification reconnue de l'acronyme HTML.",
+      "Ce n'est pas la signification reconnue de l'acronyme HTML.",
+      "Ce n'est pas la signification reconnue de l'acronyme HTML, bien que ce soit une confusion fréquente."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Quel rôle joue le langage CSS dans une page web ?",
+    "choices": [
+      "Structurer le contenu sémantique de la page",
+      "Définir la présentation visuelle (mise en forme, couleurs, mise en page) de la page",
+      "Gérer la logique métier côté serveur",
+      "Créer des bases de données"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est le rôle de HTML, pas de CSS.",
+      "C'est exact : CSS (Cascading Style Sheets) contrôle l'apparence visuelle, séparément du contenu HTML.",
+      "La logique métier serveur relève plutôt de langages comme PHP, Java, Python, Node.js...",
+      "CSS n'a aucun rapport avec la création ou la gestion de bases de données."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Quel langage est principalement utilisé pour rendre une page web interactive côté client (dans le navigateur) ?",
+    "choices": [
+      "SQL",
+      "JavaScript",
+      "C",
+      "HTML seul"
+    ],
+    "correct": 1,
+    "explanations": [
+      "SQL sert à interroger des bases de données, pas à rendre une page interactive dans le navigateur.",
+      "C'est exact : JavaScript s'exécute nativement dans le navigateur et permet l'interactivité (événements, manipulation du DOM...).",
+      "Le C n'est pas exécuté nativement par les navigateurs web standards.",
+      "HTML seul est statique ; sans script, il ne permet pas d'interactivité dynamique avancée."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Que signifie HTTP ?",
+    "choices": [
+      "HyperText Transfer Protocol",
+      "High Transfer Text Protocol",
+      "HyperLink Text Transmission Process",
+      "Home Textual Transfer Protocol"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : c'est le protocole de communication utilisé pour l'échange de ressources sur le web.",
+      "Ce n'est pas la signification reconnue de l'acronyme HTTP.",
+      "Ce n'est pas la signification reconnue de l'acronyme HTTP.",
+      "Ce n'est pas la signification reconnue de l'acronyme HTTP."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Quelle est la différence principale entre HTTP et HTTPS ?",
+    "choices": [
+      "Aucune différence fonctionnelle",
+      "HTTPS chiffre les échanges entre le client et le serveur grâce à TLS/SSL",
+      "HTTP est plus récent que HTTPS",
+      "HTTPS ne fonctionne que sur les réseaux locaux"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le chiffrement introduit une différence fonctionnelle et de sécurité majeure entre les deux.",
+      "C'est exact : HTTPS ajoute une couche de sécurité (chiffrement, authentification du serveur) via TLS/SSL par rapport à HTTP en clair.",
+      "C'est l'inverse : HTTPS est une évolution sécurisée développée après HTTP.",
+      "HTTPS fonctionne aussi bien sur Internet que sur un réseau local, sans cette restriction."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Quel code de statut HTTP indique qu'une ressource demandée n'a pas été trouvée ?",
+    "choices": [
+      "200",
+      "301",
+      "404",
+      "500"
+    ],
+    "correct": 2,
+    "explanations": [
+      "200 indique un succès (OK), pas une absence de ressource.",
+      "301 indique une redirection permanente, pas une absence de ressource.",
+      "C'est exact : 404 Not Found signifie que le serveur n'a pas trouvé la ressource demandée.",
+      "500 indique une erreur interne du serveur, pas une ressource introuvable côté client."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Quel code de statut HTTP correspond à une réponse réussie standard ?",
+    "choices": [
+      "404",
+      "500",
+      "200",
+      "403"
+    ],
+    "correct": 2,
+    "explanations": [
+      "404 correspond à « Non trouvé », pas à un succès.",
+      "500 correspond à une erreur serveur, pas à un succès.",
+      "C'est exact : 200 OK est le code standard indiquant que la requête a été traitée avec succès.",
+      "403 indique un accès interdit (Forbidden), pas un succès."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Que représente le DOM (Document Object Model) dans le contexte web ?",
+    "choices": [
+      "Un langage de programmation",
+      "Une représentation en mémoire, sous forme d'arbre d'objets, de la structure d'une page HTML manipulable par script",
+      "Un protocole réseau",
+      "Un format d'image"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le DOM n'est pas un langage, c'est une représentation/structure de données manipulée par des langages comme JavaScript.",
+      "C'est exact : le DOM modélise la page comme un arbre de nœuds, que JavaScript peut lire et modifier dynamiquement.",
+      "Le DOM n'est pas un protocole de communication réseau.",
+      "Le DOM concerne la structure du document, pas un format d'image."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Quelle méthode HTTP est en général utilisée pour envoyer des données afin de créer une nouvelle ressource côté serveur ?",
+    "choices": [
+      "GET",
+      "POST",
+      "DELETE",
+      "HEAD"
+    ],
+    "correct": 1,
+    "explanations": [
+      "GET est plutôt utilisé pour récupérer des données, pas pour en créer via un corps de requête conséquent.",
+      "C'est exact : POST est classiquement utilisé pour soumettre des données au serveur, par exemple créer une nouvelle ressource.",
+      "DELETE sert à supprimer une ressource existante, pas à en créer une.",
+      "HEAD retourne les en-têtes d'une réponse sans le corps, elle ne sert pas à créer de ressource."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Quelle méthode HTTP est utilisée pour récupérer une ressource sans provoquer d'effet de bord côté serveur ?",
+    "choices": [
+      "POST",
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "correct": 1,
+    "explanations": [
+      "POST est généralement utilisé pour des opérations avec effet de bord (création, soumission de données).",
+      "C'est exact : GET est conçue pour être une opération de lecture seule, idempotente et sans effet de bord.",
+      "PUT est utilisée pour mettre à jour ou remplacer une ressource, ce qui a un effet de bord.",
+      "DELETE supprime une ressource, ce qui constitue clairement un effet de bord."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Que signifie CSS « en cascade » (Cascading Style Sheets) ?",
+    "choices": [
+      "Les styles n'ont aucune priorité entre eux",
+      "Plusieurs règles peuvent s'appliquer à un même élément, avec des règles de priorité (spécificité, ordre, origine) qui déterminent le style final",
+      "CSS ne peut définir qu'une seule couleur par page",
+      "Les styles CSS s'appliquent uniquement aux images"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Au contraire, la notion de cascade repose justement sur des règles de priorité entre déclarations concurrentes.",
+      "C'est exact : la 'cascade' désigne le mécanisme de résolution des conflits entre règles CSS concurrentes selon spécificité, origine et ordre d'apparition.",
+      "CSS permet de définir de nombreuses propriétés de style, sans cette limitation.",
+      "CSS s'applique à l'ensemble des éléments HTML, pas uniquement aux images."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Qu'est-ce qu'une API REST ?",
+    "choices": [
+      "Un langage de programmation dédié au web",
+      "Un style d'architecture pour construire des services web exploitant les méthodes et codes HTTP standards",
+      "Une base de données relationnelle",
+      "Un protocole de chiffrement"
+    ],
+    "correct": 1,
+    "explanations": [
+      "REST est un style architectural, pas un langage de programmation en soi.",
+      "C'est exact : REST (Representational State Transfer) définit des principes (ressources, méthodes HTTP, statelessness...) pour concevoir des API web.",
+      "REST n'est pas un système de gestion de base de données, même s'il expose souvent des données issues d'une base.",
+      "REST n'est pas un mécanisme de chiffrement, bien qu'il soit souvent utilisé avec HTTPS."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Que représente une base de données relationnelle interrogée en SQL ?",
+    "choices": [
+      "Des données stockées uniquement sous forme de fichiers texte libres",
+      "Des données organisées en tables avec des relations entre elles, interrogées via un langage structuré",
+      "Un type de serveur web spécifique",
+      "Un protocole de transfert de fichiers"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une base relationnelle a une structure organisée précise, bien au-delà de simples fichiers texte libres.",
+      "C'est exact : les données sont organisées en tables liées par des clés, et SQL permet de les interroger et manipuler.",
+      "Une base de données n'est pas elle-même un serveur web, même si elle peut être utilisée par un serveur web.",
+      "SQL sert à manipuler des données structurées, pas à transférer des fichiers comme FTP."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Quelle instruction SQL permet de récupérer des données depuis une table ?",
+    "choices": [
+      "INSERT",
+      "SELECT",
+      "DELETE",
+      "UPDATE"
+    ],
+    "correct": 1,
+    "explanations": [
+      "INSERT sert à ajouter de nouvelles lignes, pas à en récupérer.",
+      "C'est exact : SELECT est l'instruction utilisée pour interroger et récupérer des données depuis une ou plusieurs tables.",
+      "DELETE sert à supprimer des lignes existantes, pas à les récupérer.",
+      "UPDATE sert à modifier des données existantes, pas à les récupérer."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Que fait la clause SQL `WHERE` ?",
+    "choices": [
+      "Elle trie les résultats",
+      "Elle filtre les lignes selon une condition donnée",
+      "Elle regroupe les lignes",
+      "Elle crée une nouvelle table"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le tri des résultats se fait avec `ORDER BY`, pas `WHERE`.",
+      "C'est exact : `WHERE` sélectionne uniquement les lignes qui satisfont la condition spécifiée.",
+      "Le regroupement se fait avec `GROUP BY`, pas `WHERE`.",
+      "La création de table se fait avec `CREATE TABLE`, sans rapport avec `WHERE`."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Qu'est-ce qu'une clé primaire (« primary key ») dans une table relationnelle ?",
+    "choices": [
+      "Une colonne qui peut contenir des valeurs dupliquées librement",
+      "Une colonne (ou ensemble de colonnes) identifiant de façon unique chaque ligne de la table",
+      "Un mot de passe d'accès à la base de données",
+      "Un index inutile pour les performances"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est l'inverse : une clé primaire impose justement l'unicité des valeurs.",
+      "C'est exact : la clé primaire garantit qu'aucune ligne ne partage la même valeur d'identifiant, ce qui permet de la retrouver de façon unique.",
+      "Une clé primaire n'a aucun rapport avec l'authentification ou un mot de passe.",
+      "Une clé primaire est en général indexée automatiquement et améliore les performances de recherche."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Que signifie l'acronyme SQL ?",
+    "choices": [
+      "Structured Query Language",
+      "Simple Query Language",
+      "System Query Logic",
+      "Standard Question Language"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : SQL est le langage standard utilisé pour interroger et manipuler des bases de données relationnelles.",
+      "Ce n'est pas la signification reconnue de l'acronyme SQL.",
+      "Ce n'est pas la signification reconnue de l'acronyme SQL.",
+      "Ce n'est pas la signification reconnue de l'acronyme SQL."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Qu'est-ce que l'injection SQL (« SQL injection ») en sécurité web ?",
+    "choices": [
+      "Une technique légitime d'optimisation de requêtes",
+      "Une faille de sécurité où un attaquant insère du code SQL malveillant via une entrée utilisateur non filtrée",
+      "Un protocole standard de sauvegarde de bases de données",
+      "Une fonctionnalité native et sûre de tous les frameworks web"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Ce n'est absolument pas une technique légitime, c'est une vulnérabilité à corriger.",
+      "C'est exact : en insérant du code SQL via un champ non sécurisé, un attaquant peut manipuler ou voler des données.",
+      "L'injection SQL n'a aucun rapport avec la sauvegarde de données, c'est une attaque.",
+      "Cette faille dépend justement de l'absence de protection ; elle n'est pas 'native et sûre' par défaut dans tous les frameworks."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Quelle balise HTML est utilisée pour créer un lien hypertexte ?",
+    "choices": [
+      "<link>",
+      "<a>",
+      "<href>",
+      "<url>"
+    ],
+    "correct": 1,
+    "explanations": [
+      "<link> sert généralement à lier des ressources externes (comme une feuille de style), pas à créer un lien cliquable dans le contenu.",
+      "C'est exact : la balise `<a>` (avec l'attribut href) crée un lien hypertexte cliquable.",
+      "`<href>` n'est pas une balise HTML, `href` est un attribut de la balise `<a>`.",
+      "`<url>` n'est pas une balise HTML standard."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "À quoi sert l'attribut `alt` sur une balise `<img>` en HTML ?",
+    "choices": [
+      "À définir la largeur de l'image",
+      "À fournir un texte alternatif descriptif, utile pour l'accessibilité et en cas d'échec de chargement de l'image",
+      "À changer la couleur de fond",
+      "À définir le lien de destination au clic"
+    ],
+    "correct": 1,
+    "explanations": [
+      "La largeur se définit via l'attribut `width` ou en CSS, pas `alt`.",
+      "C'est exact : `alt` améliore l'accessibilité (lecteurs d'écran) et s'affiche si l'image ne peut pas être chargée.",
+      "La couleur de fond se définit en CSS, sans rapport avec `alt`.",
+      "Le lien de destination au clic nécessiterait d'envelopper l'image dans une balise `<a>`, pas l'attribut `alt`."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Quelle est la différence entre le stockage `localStorage` et `sessionStorage` en JavaScript côté navigateur ?",
+    "choices": [
+      "Aucune différence",
+      "localStorage persiste après la fermeture du navigateur, sessionStorage est effacé à la fin de la session/onglet",
+      "sessionStorage a une capacité de stockage illimitée",
+      "localStorage nécessite une connexion internet active"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Leur durée de vie diffère nettement, ce qui est leur principale distinction pratique.",
+      "C'est exact : localStorage conserve les données au-delà de la session (jusqu'à suppression explicite), sessionStorage est lié à la durée de vie de l'onglet/session.",
+      "Les deux mécanismes ont des limites de capacité comparables (souvent quelques Mo), aucun n'est illimité.",
+      "Ces deux mécanismes de stockage fonctionnent localement dans le navigateur, sans nécessiter de connexion internet."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Qu'est-ce qu'une requête asynchrone en JavaScript (ex. via `fetch` ou `AJAX`) ?",
+    "choices": [
+      "Une requête qui bloque totalement l'interface utilisateur jusqu'à sa fin",
+      "Une requête qui s'exécute sans bloquer le fil d'exécution principal, permettant à la page de rester interactive pendant l'attente de la réponse",
+      "Une requête interdite en JavaScript côté navigateur",
+      "Une requête qui ne peut interroger qu'une base de données locale"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est justement l'inverse d'une requête synchrone bloquante, l'un des intérêts majeurs de l'asynchrone.",
+      "C'est exact : grâce au modèle asynchrone (callbacks, promesses, async/await), la page reste réactive pendant que la requête réseau s'exécute en tâche de fond.",
+      "Les requêtes asynchrones (fetch, XMLHttpRequest) sont au contraire une pratique très courante et supportée nativement.",
+      "Une requête AJAX/fetch peut interroger n'importe quel serveur distant exposant une API, pas uniquement une base locale."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Que signifie l'acronyme JSON ?",
+    "choices": [
+      "JavaScript Object Notation",
+      "Java Standard Object Network",
+      "Joint Structured Object Notation",
+      "JavaScript Oriented Network"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : JSON est un format léger d'échange de données, basé sur la syntaxe des objets JavaScript.",
+      "Ce n'est pas la signification reconnue de l'acronyme JSON.",
+      "Ce n'est pas la signification reconnue de l'acronyme JSON.",
+      "Ce n'est pas la signification reconnue de l'acronyme JSON."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Pourquoi le format JSON est-il très utilisé pour l'échange de données entre client et serveur ?",
+    "choices": [
+      "Parce qu'il est illisible pour l'humain, donc sécurisé",
+      "Parce qu'il est léger, facile à lire pour un humain et facilement interprétable par la plupart des langages de programmation",
+      "Parce qu'il ne peut représenter que des nombres",
+      "Parce qu'il remplace obligatoirement HTTP"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est l'inverse : JSON est justement apprécié pour sa lisibilité humaine, la sécurité ne dépend pas de son illisibilité.",
+      "C'est exact : sa syntaxe simple (objets, tableaux, valeurs) le rend à la fois lisible et facilement parsable par la plupart des langages modernes.",
+      "JSON peut représenter des chaînes, nombres, booléens, objets, tableaux et null, pas uniquement des nombres.",
+      "JSON est un format de données, il ne remplace pas le protocole de transport HTTP, ils sont complémentaires."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Qu'est-ce que le « responsive design » en développement web ?",
+    "choices": [
+      "Une technique consistant à adapter automatiquement la mise en page selon la taille de l'écran de l'utilisateur",
+      "Une technique pour accélérer uniquement le chargement des images",
+      "Un langage de programmation dédié au web mobile",
+      "Une base de données optimisée pour mobile"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : grâce à des techniques comme les media queries CSS, la mise en page s'ajuste aux différentes tailles d'écran (mobile, tablette, desktop).",
+      "Le responsive design concerne la mise en page globale, pas uniquement l'optimisation des images.",
+      "Le responsive design est une approche de conception, pas un langage de programmation en soi.",
+      "Ce n'est pas une base de données, c'est une technique de mise en forme visuelle adaptative."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Quelle est la fonction principale d'un serveur web ?",
+    "choices": [
+      "Afficher directement une interface graphique à l'utilisateur final sans réseau",
+      "Recevoir des requêtes HTTP et renvoyer les ressources ou réponses correspondantes au client",
+      "Compiler du code source uniquement",
+      "Stocker exclusivement des images"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le serveur web n'affiche pas directement l'interface, c'est le navigateur du client qui l'affiche après réception de la réponse.",
+      "C'est exact : un serveur web (Apache, Nginx, Node.js...) écoute les requêtes HTTP et retourne les réponses appropriées (pages, données, fichiers...).",
+      "Un serveur web peut exécuter du code, mais sa fonction première n'est pas de compiler des programmes.",
+      "Un serveur web peut stocker et servir tout type de ressource, pas uniquement des images."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Que signifie l'acronyme CRUD souvent utilisé dans le développement d'applications web ?",
+    "choices": [
+      "Create, Read, Update, Delete",
+      "Compile, Run, Upload, Deploy",
+      "Client, Request, User, Data",
+      "Create, Route, Use, Design"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : CRUD désigne les quatre opérations de base sur des données persistantes : créer, lire, mettre à jour, supprimer.",
+      "Ce n'est pas la signification reconnue de CRUD.",
+      "Ce n'est pas la signification reconnue de CRUD.",
+      "Ce n'est pas la signification reconnue de CRUD."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Qu'est-ce qu'un « framework » côté développement web (ex. Angular, React, Django, Spring) ?",
+    "choices": [
+      "Un simple éditeur de texte",
+      "Un ensemble structuré d'outils et de conventions facilitant le développement d'applications selon une architecture donnée",
+      "Un protocole réseau spécifique",
+      "Un format de fichier image"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Un éditeur de texte est un outil d'écriture de code, un framework est un cadre logiciel bien plus large.",
+      "C'est exact : un framework fournit une structure, des bibliothèques et des conventions pour accélérer et standardiser le développement.",
+      "Un framework n'est pas un protocole de communication réseau.",
+      "Un framework est un ensemble logiciel, sans rapport avec un format d'image."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Qu'est-ce que le principe de « cookie » en navigation web ?",
+    "choices": [
+      "Un virus informatique classique",
+      "Un petit fichier stocké par le navigateur, souvent utilisé pour conserver l'état d'une session utilisateur (ex. authentification)",
+      "Un langage de script exécuté côté serveur",
+      "Un format de compression d'image"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Un cookie n'est pas, par nature, un logiciel malveillant, même s'il peut être détourné à des fins de traçage abusif.",
+      "C'est exact : les cookies permettent notamment de maintenir une session, de mémoriser des préférences ou de suivre la navigation.",
+      "Un cookie est une donnée stockée côté client, pas un langage de script serveur.",
+      "Un cookie n'a aucun rapport avec la compression d'images."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Que représente le terme « responsive » vs « adaptive » en design web (nuance générale) ?",
+    "choices": [
+      "Ce sont des synonymes stricts sans nuance",
+      "Le responsive s'ajuste en continu via des règles fluides (ex : %, media queries), l'adaptive propose des mises en page fixes prédéfinies selon des points de rupture",
+      "Adaptive concerne uniquement les couleurs",
+      "Responsive ne fonctionne que sur ordinateur de bureau"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une nuance existe généralement entre ces deux approches de conception.",
+      "C'est la distinction couramment admise : le responsive s'adapte de façon fluide et continue, l'adaptive bascule entre des mises en page distinctes selon des seuils.",
+      "Ni l'un ni l'autre ne se limite aux couleurs ; ils concernent la disposition globale de la page.",
+      "Le responsive design vise justement à s'adapter à tous les types d'écrans, y compris mobiles."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Quelle balise HTML définit le titre principal affiché dans l'onglet du navigateur ?",
+    "choices": [
+      "<h1>",
+      "<header>",
+      "<title>",
+      "<head>"
+    ],
+    "correct": 2,
+    "explanations": [
+      "<h1> définit un titre visible dans le contenu de la page, pas le titre de l'onglet du navigateur.",
+      "<header> est un conteneur sémantique pour l'en-tête de la page ou d'une section, pas le titre de l'onglet.",
+      "C'est exact : la balise `<title>`, placée dans `<head>`, définit le texte affiché dans l'onglet ou la barre de titre du navigateur.",
+      "`<head>` est la section contenant les métadonnées de la page, la balise spécifique du titre est `<title>` à l'intérieur."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Pourquoi valider et échapper les entrées utilisateur côté serveur est-il essentiel en développement web ?",
+    "choices": [
+      "Ce n'est jamais nécessaire si la validation est faite côté client (JavaScript)",
+      "Parce que la validation côté client peut être contournée, la validation côté serveur reste indispensable pour la sécurité",
+      "Parce que cela ralentit toujours le site sans bénéfice",
+      "Parce que le navigateur s'en charge automatiquement"
+    ],
+    "correct": 1,
+    "explanations": [
+      "La validation côté client peut être désactivée ou contournée par un attaquant, elle ne suffit jamais seule.",
+      "C'est exact : la validation serveur est la seule ligne de défense fiable contre les données malveillantes (injections, XSS...), car le client n'est jamais fiable.",
+      "Une validation bien conçue a un coût minime comparé au risque d'une faille de sécurité exploitée.",
+      "Le navigateur n'assure aucune validation de sécurité automatique des données envoyées à un serveur tiers."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Qu'est-ce qu'une attaque XSS (« Cross-Site Scripting ») ?",
+    "choices": [
+      "Une attaque qui consiste à injecter du script malveillant exécuté dans le navigateur d'autres utilisateurs via une page vulnérable",
+      "Une méthode légitime d'optimisation JavaScript",
+      "Un protocole de chiffrement des mots de passe",
+      "Une technique de mise en cache des pages"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : un contenu non filtré permet à un attaquant d'injecter du JavaScript exécuté dans le contexte d'autres utilisateurs, pouvant voler des données de session.",
+      "XSS est une vulnérabilité de sécurité à corriger, pas une pratique légitime d'optimisation.",
+      "XSS n'a aucun rapport avec le chiffrement de mots de passe.",
+      "XSS n'a aucun rapport avec la mise en cache de pages web."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Quel est le rôle principal d'un CDN (Content Delivery Network) ?",
+    "choices": [
+      "Compiler le code JavaScript avant son exécution",
+      "Distribuer le contenu (fichiers statiques, images...) depuis des serveurs proches géographiquement de l'utilisateur pour améliorer la rapidité",
+      "Chiffrer systématiquement toutes les bases de données",
+      "Remplacer complètement le serveur d'origine des données dynamiques"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Un CDN ne compile pas de code, il distribue des ressources déjà prêtes.",
+      "C'est exact : en répartissant des copies du contenu sur plusieurs serveurs géographiques, un CDN réduit la latence perçue par l'utilisateur.",
+      "Le chiffrement des bases de données n'est pas la fonction d'un CDN.",
+      "Un CDN complète généralement le serveur d'origine pour le contenu statique, il ne remplace pas toute la logique dynamique."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Que fait la balise `<form>` en HTML ?",
+    "choices": [
+      "Elle affiche une image",
+      "Elle définit une zone permettant de collecter des données utilisateur à envoyer, en général vers un serveur",
+      "Elle crée un lien hypertexte",
+      "Elle définit le style CSS de la page"
+    ],
+    "correct": 1,
+    "explanations": [
+      "L'affichage d'une image utilise la balise `<img>`, pas `<form>`.",
+      "C'est exact : `<form>` regroupe des champs de saisie (input, select...) et définit comment/où les données seront envoyées (attributs action, method).",
+      "Un lien hypertexte se crée avec la balise `<a>`, pas `<form>`.",
+      "Le style se définit en CSS, via `<style>` ou un fichier externe, pas via `<form>`."
+    ]
+  },
+  {
+    "category": "Web",
+    "question": "Qu'est-ce que le principe MVC (Modèle-Vue-Contrôleur), souvent utilisé dans les applications web ?",
+    "choices": [
+      "Un protocole réseau de sécurité",
+      "Un patron d'architecture qui sépare les données (modèle), l'affichage (vue) et la logique de contrôle des interactions (contrôleur)",
+      "Un langage de script obsolète",
+      "Une technique de compression d'image"
+    ],
+    "correct": 1,
+    "explanations": [
+      "MVC n'est pas un protocole réseau, c'est un patron d'architecture logicielle.",
+      "C'est exact : cette séparation des responsabilités facilite la maintenance, les tests et l'évolution de l'application.",
+      "MVC est un concept d'architecture toujours largement utilisé aujourd'hui, pas un langage obsolète.",
+      "MVC concerne l'organisation du code, sans rapport avec la compression d'images."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Que signifie l'acronyme UML souvent utilisé en génie logiciel ?",
+    "choices": [
+      "Unified Modeling Language",
+      "Universal Markup Language",
+      "Unit Model Layer",
+      "United Modular Logic"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : UML est un langage de modélisation graphique standard utilisé pour concevoir des systèmes orientés objet.",
+      "Ce n'est pas la signification reconnue de l'acronyme UML.",
+      "Ce n'est pas la signification reconnue de l'acronyme UML.",
+      "Ce n'est pas la signification reconnue de l'acronyme UML."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Quel diagramme UML représente les interactions entre objets dans le temps, sous forme de séquence d'appels ?",
+    "choices": [
+      "Diagramme de classes",
+      "Diagramme de séquence",
+      "Diagramme de cas d'utilisation",
+      "Diagramme de déploiement"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le diagramme de classes décrit la structure statique (classes, attributs, relations), pas la dynamique temporelle.",
+      "C'est exact : le diagramme de séquence montre l'ordre chronologique des messages échangés entre objets/acteurs.",
+      "Le diagramme de cas d'utilisation décrit les fonctionnalités du système du point de vue des acteurs, sans détailler la chronologie des appels.",
+      "Le diagramme de déploiement représente l'architecture matérielle/physique, pas les interactions temporelles entre objets."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Que signifie l'acronyme IDE en développement logiciel ?",
+    "choices": [
+      "Integrated Development Environment",
+      "Internal Data Exchange",
+      "Interface Design Element",
+      "Integrated Debug Engine"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : un IDE (comme Eclipse, IntelliJ, Visual Studio) regroupe éditeur, compilateur et débogueur dans un même outil.",
+      "Ce n'est pas la signification reconnue de l'acronyme IDE.",
+      "Ce n'est pas la signification reconnue de l'acronyme IDE.",
+      "Ce n'est pas la signification reconnue de l'acronyme IDE."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce qu'un système de gestion de versions comme Git permet de faire ?",
+    "choices": [
+      "Compiler automatiquement le code source",
+      "Suivre l'historique des modifications d'un projet et faciliter le travail collaboratif entre développeurs",
+      "Chiffrer les fichiers d'un projet",
+      "Concevoir des interfaces graphiques"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Git n'est pas un compilateur, c'est un outil de suivi de versions du code source.",
+      "C'est exact : Git permet de suivre les changements, revenir en arrière, gérer des branches et fusionner le travail de plusieurs contributeurs.",
+      "Le chiffrement de fichiers n'est pas la fonction principale de Git.",
+      "La conception d'interfaces graphiques relève d'autres outils, pas de la gestion de versions."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Que signifie le terme « commit » dans Git ?",
+    "choices": [
+      "La suppression définitive d'un fichier",
+      "Un enregistrement ponctuel des modifications apportées au projet, avec un message descriptif",
+      "La création automatique d'une nouvelle branche",
+      "La fusion obligatoire de deux branches"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Un commit n'a pas pour fonction de supprimer définitivement des fichiers du dépôt.",
+      "C'est exact : un commit capture un instantané des changements effectués, accompagné d'un message explicatif.",
+      "La création d'une branche se fait via une commande dédiée (`git branch`/`git checkout -b`), pas automatiquement par un commit.",
+      "Un commit n'implique pas nécessairement une fusion de branches, ces opérations sont distinctes."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Quelle est la différence entre les tests unitaires et les tests d'intégration en génie logiciel ?",
+    "choices": [
+      "Ce sont des synonymes stricts",
+      "Les tests unitaires vérifient une unité de code isolée, les tests d'intégration vérifient l'interaction correcte entre plusieurs composants",
+      "Les tests d'intégration sont toujours plus rapides à exécuter",
+      "Les tests unitaires ne concernent que les interfaces graphiques"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Ils ciblent des périmètres différents et sont complémentaires dans une stratégie de test.",
+      "C'est exact : le test unitaire isole une fonction/méthode, le test d'intégration vérifie que plusieurs modules fonctionnent correctement ensemble.",
+      "En général, les tests unitaires sont plus rapides car plus ciblés que les tests d'intégration, souvent plus lourds.",
+      "Les tests unitaires peuvent porter sur n'importe quelle unité de code, pas uniquement sur des interfaces graphiques."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce que la méthode Agile (ex. Scrum) privilégie principalement dans la gestion de projet logiciel ?",
+    "choices": [
+      "Une planification rigide et figée dès le début du projet, sans possibilité de changement",
+      "Des itérations courtes, une collaboration continue avec le client et une adaptation régulière aux changements",
+      "L'absence totale de documentation, dans tous les cas",
+      "Le développement exclusivement en solitaire, sans équipe"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est l'inverse de l'approche agile, plus proche d'une méthode dite en cascade (waterfall) traditionnelle.",
+      "C'est exact : les méthodes agiles favorisent des cycles courts (sprints), le feedback fréquent et l'adaptabilité face aux changements de besoins.",
+      "Les méthodes agiles ne prohibent pas toute documentation, elles privilégient une documentation utile et suffisante plutôt qu'exhaustive.",
+      "Les méthodes agiles reposent au contraire fortement sur le travail d'équipe et la collaboration."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Que signifie l'acronyme QA dans le contexte de la qualité logicielle ?",
+    "choices": [
+      "Quick Access",
+      "Quality Assurance",
+      "Query Algorithm",
+      "Quantitative Analysis"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Ce n'est pas la signification standard de QA dans ce contexte.",
+      "C'est exact : QA (Assurance Qualité) désigne l'ensemble des activités visant à garantir la qualité d'un logiciel tout au long de son développement.",
+      "Ce n'est pas la signification standard de QA dans ce contexte.",
+      "Ce n'est pas la signification standard de QA dans ce contexte."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Quelle est la différence entre le débogage (« debugging ») et les tests logiciels ?",
+    "choices": [
+      "Ce sont exactement la même activité",
+      "Les tests visent à détecter la présence d'anomalies, le débogage vise à localiser et corriger la cause précise d'une anomalie identifiée",
+      "Le débogage précède toujours les tests dans le cycle de développement",
+      "Les tests ne servent qu'après la mise en production"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Ces deux activités, bien que complémentaires, ont des objectifs distincts.",
+      "C'est exact : les tests détectent qu'un problème existe, le débogage cherche ensuite où et pourquoi il se produit pour le corriger.",
+      "Dans la pratique courante, les tests détectent généralement une anomalie avant que le débogage ne commence pour la comprendre et la corriger.",
+      "Les tests s'effectuent tout au long du cycle de développement, pas uniquement après la mise en production."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Que représente la complexité algorithmique notée O(n) (notation Big-O) ?",
+    "choices": [
+      "Un temps d'exécution constant quel que soit n",
+      "Un temps d'exécution qui croît linéairement avec la taille n des données en entrée",
+      "Un temps d'exécution qui diminue quand n augmente",
+      "Un algorithme qui ne termine jamais"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Un temps constant s'écrirait plutôt O(1), pas O(n).",
+      "C'est exact : O(n) signifie que le nombre d'opérations croît proportionnellement à la taille de l'entrée n.",
+      "La complexité mesure une croissance du coût avec n, pas une diminution.",
+      "La notation Big-O mesure la complexité d'un algorithme qui termine, pas un algorithme non terminal."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Quelle structure de données fonctionne selon le principe LIFO (« Last In, First Out ») ?",
+    "choices": [
+      "File (queue)",
+      "Pile (stack)",
+      "Liste chaînée simple",
+      "Table de hachage"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une file fonctionne selon le principe FIFO (premier entré, premier sorti), pas LIFO.",
+      "C'est exact : une pile retire toujours le dernier élément ajouté en premier, comme une pile d'assiettes.",
+      "Une liste chaînée n'impose pas par elle-même de règle d'accès LIFO ou FIFO particulière.",
+      "Une table de hachage organise l'accès par clé, sans notion d'ordre LIFO/FIFO."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Quelle structure de données fonctionne selon le principe FIFO (« First In, First Out ») ?",
+    "choices": [
+      "Pile (stack)",
+      "File (queue)",
+      "Arbre binaire",
+      "Ensemble (set)"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Une pile suit le principe LIFO (dernier entré, premier sorti), pas FIFO.",
+      "C'est exact : une file traite les éléments dans l'ordre exact où ils ont été ajoutés, comme une file d'attente.",
+      "Un arbre binaire est une structure hiérarchique, sans notion directe de FIFO.",
+      "Un ensemble ne garantit en général aucun ordre d'insertion/sortie particulier."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce qu'un algorithme de tri « stable » ?",
+    "choices": [
+      "Un algorithme qui ne plante jamais",
+      "Un algorithme qui conserve l'ordre relatif des éléments ayant des clés de tri égales",
+      "Un algorithme uniquement utilisable sur des tableaux de petite taille",
+      "Un algorithme qui trie toujours en temps constant"
+    ],
+    "correct": 1,
+    "explanations": [
+      "La stabilité n'a aucun rapport avec la fiabilité d'exécution générale de l'algorithme.",
+      "C'est exact : la stabilité garantit que deux éléments égaux selon le critère de tri conservent leur ordre d'apparition initial.",
+      "La stabilité n'a aucune limite intrinsèque liée à la taille des données.",
+      "Aucun algorithme de tri comparatif ne trie en temps constant ; la stabilité est indépendante de la complexité temporelle."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Que représente la complexité algorithmique O(log n) par rapport à O(n) ?",
+    "choices": [
+      "Elle croît plus vite que O(n) quand n augmente",
+      "Elle croît beaucoup plus lentement que O(n) quand n augmente, typique d'une recherche dichotomique",
+      "Elle est toujours équivalente à O(n)",
+      "Elle correspond à un algorithme qui ne dépend pas de n"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est l'inverse : O(log n) croît nettement plus lentement que O(n) à mesure que n augmente.",
+      "C'est exact : le logarithme croît très lentement, ce qui rend les algorithmes comme la recherche binaire très efficaces sur de grands volumes.",
+      "O(log n) et O(n) représentent des croissances très différentes, elles ne sont pas équivalentes.",
+      "O(log n) dépend bien de n, mais de façon beaucoup plus modérée que O(n)."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce qu'une base de données NoSQL, par opposition à une base relationnelle ?",
+    "choices": [
+      "Une base qui n'utilise jamais de langage de requête",
+      "Une base de données qui ne repose pas nécessairement sur un modèle relationnel en tables, offrant d'autres modèles (documents, clé-valeur, graphe...)",
+      "Une base uniquement utilisée pour des données numériques",
+      "Un synonyme strict de base relationnelle"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Certaines bases NoSQL disposent bien de leur propre langage de requête, ce n'est pas l'absence totale de requêtage qui les définit.",
+      "C'est exact : NoSQL regroupe des systèmes variés (MongoDB, Redis, Neo4j...) adaptés à des structures de données différentes du modèle relationnel classique.",
+      "NoSQL peut stocker des données de tous types (texte, documents, graphes...), pas uniquement numériques.",
+      "NoSQL désigne justement des systèmes qui s'écartent du modèle relationnel traditionnel."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Que signifie l'acronyme API ?",
+    "choices": [
+      "Application Programming Interface",
+      "Automated Program Installation",
+      "Advanced Protocol Interface",
+      "Application Process Integration"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : une API définit un ensemble de règles permettant à des logiciels de communiquer entre eux.",
+      "Ce n'est pas la signification reconnue de l'acronyme API.",
+      "Ce n'est pas la signification reconnue de l'acronyme API.",
+      "Ce n'est pas la signification reconnue de l'acronyme API."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce que le « cloud computing » ?",
+    "choices": [
+      "Le stockage de données uniquement sur un disque dur local",
+      "La fourniture à la demande de ressources informatiques (calcul, stockage, réseau) via Internet, généralement par un fournisseur tiers",
+      "Un langage de programmation spécifique",
+      "Un virus informatique répandu"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est justement l'inverse : le cloud déporte les ressources hors de la machine locale, accessibles via le réseau.",
+      "C'est exact : des services comme AWS, Azure ou Google Cloud fournissent des ressources informatiques évolutives à la demande via Internet.",
+      "Le cloud computing est un modèle de fourniture de services informatiques, pas un langage de programmation.",
+      "Le cloud computing est un modèle technologique légitime, sans rapport avec un logiciel malveillant."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce qu'un système d'exploitation (« Operating System ») ?",
+    "choices": [
+      "Un simple logiciel de traitement de texte",
+      "Un logiciel système qui gère les ressources matérielles de l'ordinateur et sert d'intermédiaire entre le matériel et les applications",
+      "Un langage de programmation bas niveau",
+      "Un type spécifique de virus"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Un logiciel de traitement de texte est une application, pas un système d'exploitation.",
+      "C'est exact : Windows, Linux ou macOS gèrent le processeur, la mémoire, les périphériques et permettent aux applications de s'exécuter.",
+      "Un système d'exploitation n'est pas un langage de programmation, bien qu'il puisse exposer des API utilisables depuis divers langages.",
+      "Un système d'exploitation est un logiciel légitime essentiel, sans rapport avec un virus."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce qu'un processus léger ou « thread », par rapport à un processus classique ?",
+    "choices": [
+      "Une entité totalement indépendante ne partageant aucune ressource avec le processus parent",
+      "Une unité d'exécution qui partage l'espace mémoire du processus auquel elle appartient, permettant une exécution concurrente moins coûteuse qu'un processus séparé",
+      "Un fichier exécutable autonome",
+      "Un type de base de données"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est l'inverse : un thread partage justement la mémoire de son processus, contrairement à un processus totalement indépendant.",
+      "C'est exact : les threads d'un même processus partagent mémoire et ressources, ce qui rend leur création et communication plus légères que des processus séparés.",
+      "Un thread n'est pas un fichier exécutable, c'est une unité d'exécution au sein d'un programme déjà lancé.",
+      "Un thread n'a aucun rapport avec une base de données."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Que signifie le terme « scalabilité » (« scalability ») d'un système informatique ?",
+    "choices": [
+      "La capacité d'un système à réduire automatiquement sa consommation électrique",
+      "La capacité d'un système à absorber une charge croissante (utilisateurs, données) en ajustant ses ressources",
+      "La capacité d'un système à fonctionner sans connexion réseau",
+      "Un synonyme de sécurité informatique"
+    ],
+    "correct": 1,
+    "explanations": [
+      "La scalabilité concerne la capacité de montée en charge, pas la consommation électrique.",
+      "C'est exact : un système scalable peut, en ajoutant des ressources (verticalement ou horizontalement), continuer à fonctionner efficacement sous une charge croissante.",
+      "La scalabilité concerne la charge et les ressources, pas le fonctionnement hors connexion.",
+      "La scalabilité est un critère de performance/capacité, distinct de la sécurité même si les deux comptent en qualité logicielle."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce que le chiffrement (« encryption ») d'une donnée ?",
+    "choices": [
+      "La suppression définitive d'une donnée",
+      "La transformation d'une donnée en une forme illisible sans une clé appropriée, afin d'en protéger la confidentialité",
+      "La compression d'un fichier pour réduire sa taille",
+      "La sauvegarde automatique d'un fichier sur un serveur distant"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Le chiffrement ne supprime pas la donnée, il la protège tout en la conservant récupérable avec la bonne clé.",
+      "C'est exact : chiffrer une donnée la rend incompréhensible sans la clé de déchiffrement correspondante, protégeant ainsi sa confidentialité.",
+      "La compression vise à réduire la taille, un objectif différent (même si les deux peuvent être combinés).",
+      "Le chiffrement ne concerne pas en soi la sauvegarde ou la localisation des données."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce qu'une norme de qualité logicielle comme ISO/IEC 25010 permet d'évaluer ?",
+    "choices": [
+      "Uniquement la vitesse d'un réseau internet",
+      "Les caractéristiques de qualité d'un produit logiciel (fiabilité, performance, sécurité, maintenabilité...)",
+      "Le prix de vente d'un logiciel",
+      "Le nombre de développeurs impliqués dans un projet"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Cette norme ne concerne pas la performance d'un réseau internet en tant que tel.",
+      "C'est exact : ISO/IEC 25010 définit un modèle de caractéristiques de qualité logicielle telles que fiabilité, utilisabilité, performance, sécurité, maintenabilité, etc.",
+      "Le prix d'un logiciel n'est pas un critère technique couvert par cette norme de qualité.",
+      "La taille de l'équipe n'est pas un critère de qualité produit couvert par cette norme."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Que signifie l'acronyme TDD en développement logiciel ?",
+    "choices": [
+      "Test Driven Development",
+      "Total Data Design",
+      "Technical Debug Documentation",
+      "Type Definition Draft"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : le TDD (développement piloté par les tests) consiste à écrire les tests avant le code de production correspondant.",
+      "Ce n'est pas la signification reconnue de l'acronyme TDD.",
+      "Ce n'est pas la signification reconnue de l'acronyme TDD.",
+      "Ce n'est pas la signification reconnue de l'acronyme TDD."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Quel est l'objectif principal de l'intégration continue (« Continuous Integration », CI) ?",
+    "choices": [
+      "Retarder au maximum les fusions de code entre développeurs",
+      "Fusionner et tester fréquemment le code de plusieurs développeurs afin de détecter rapidement les problèmes d'intégration",
+      "Empêcher totalement les tests automatisés",
+      "Remplacer les développeurs par des scripts automatiques"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est l'inverse : la CI encourage au contraire des intégrations fréquentes plutôt que des fusions tardives et risquées.",
+      "C'est exact : en intégrant et testant le code régulièrement (voire à chaque commit), les conflits et bugs sont détectés plus tôt.",
+      "La CI repose au contraire fortement sur l'automatisation des tests à chaque intégration.",
+      "La CI est un outil au service des développeurs, elle ne les remplace pas."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce qu'une architecture logicielle en « microservices » ?",
+    "choices": [
+      "Une application découpée en un seul gros bloc monolithique",
+      "Une application découpée en plusieurs services indépendants, communiquant entre eux, chacun ayant une responsabilité spécifique",
+      "Un type de base de données uniquement",
+      "Un protocole de chiffrement réseau"
+    ],
+    "correct": 1,
+    "explanations": [
+      "C'est exactement l'inverse d'une architecture monolithique, que les microservices cherchent souvent à remplacer.",
+      "C'est exact : chaque microservice est développé, déployé et mis à l'échelle indépendamment, communiquant via des API (souvent REST ou messagerie).",
+      "Les microservices concernent l'architecture applicative globale, pas uniquement le stockage de données.",
+      "Les microservices constituent un style d'architecture logicielle, pas un protocole de sécurité réseau."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Que signifie l'acronyme DevOps ?",
+    "choices": [
+      "Un poste unique combinant strictement Développement et Opérations sans lien avec la culture d'équipe",
+      "Une culture et un ensemble de pratiques visant à rapprocher les équipes de développement et d'exploitation pour livrer plus rapidement et fiablement",
+      "Un langage de programmation",
+      "Un type de base de données NoSQL"
+    ],
+    "correct": 1,
+    "explanations": [
+      "DevOps dépasse la simple fusion de deux rôles ; c'est avant tout une démarche culturelle et organisationnelle.",
+      "C'est exact : DevOps vise à automatiser et fluidifier le cycle de vie du logiciel, de son développement jusqu'à son exploitation en production.",
+      "DevOps est une pratique/culture d'organisation, pas un langage de programmation.",
+      "DevOps n'est pas un système de gestion de données, c'est une approche de collaboration et d'automatisation."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce qu'un « bug » en informatique ?",
+    "choices": [
+      "Une fonctionnalité prévue et documentée du logiciel",
+      "Une anomalie ou un défaut dans un programme provoquant un comportement inattendu ou incorrect",
+      "Un type de virus informatique spécifique",
+      "Un composant matériel défectueux uniquement"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Un bug est justement un comportement non voulu, à l'opposé d'une fonctionnalité prévue.",
+      "C'est exact : un bug désigne une erreur de conception ou de code entraînant un résultat différent de celui attendu.",
+      "Un bug n'est pas nécessairement lié à un virus ; il peut résulter simplement d'une erreur de programmation.",
+      "Un bug est le plus souvent d'origine logicielle, bien que des défauts matériels puissent aussi causer des dysfonctionnements distincts."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Que signifie l'acronyme URL ?",
+    "choices": [
+      "Uniform Resource Locator",
+      "United Resource Link",
+      "Universal Reference Locator",
+      "Unified Redirect Link"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : une URL identifie de façon unique l'emplacement d'une ressource sur le web (protocole, domaine, chemin...).",
+      "Ce n'est pas la signification reconnue de l'acronyme URL.",
+      "Ce n'est pas la signification reconnue de l'acronyme URL.",
+      "Ce n'est pas la signification reconnue de l'acronyme URL."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce qu'un pare-feu (« firewall ») en sécurité informatique ?",
+    "choices": [
+      "Un logiciel de traitement de texte sécurisé",
+      "Un système qui filtre le trafic réseau selon des règles définies, afin de bloquer les accès non autorisés",
+      "Un type de câble réseau spécifique",
+      "Une méthode de compression de fichiers"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Un pare-feu n'a aucun rapport avec le traitement de texte.",
+      "C'est exact : un pare-feu contrôle les flux entrants/sortants d'un réseau ou d'une machine selon des règles de sécurité définies.",
+      "Un pare-feu est un dispositif logiciel ou matériel de filtrage, pas un type de câble.",
+      "Un pare-feu n'a aucun rapport avec la compression de données."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Que signifie le terme « open source » appliqué à un logiciel ?",
+    "choices": [
+      "Un logiciel gratuit mais dont le code source reste secret",
+      "Un logiciel dont le code source est rendu public et peut être consulté, modifié et redistribué selon une licence donnée",
+      "Un logiciel uniquement utilisable par des entreprises",
+      "Un logiciel qui ne fonctionne que sur Linux"
+    ],
+    "correct": 1,
+    "explanations": [
+      "L'open source implique justement la publication du code source, ce qui le distingue d'un simple logiciel gratuit à code fermé.",
+      "C'est exact : le code source est accessible et les licences open source définissent les conditions de réutilisation et de modification.",
+      "Un logiciel open source est en général accessible à tous, particuliers comme entreprises.",
+      "De nombreux logiciels open source fonctionnent sur plusieurs systèmes d'exploitation, pas uniquement Linux."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce que la « dette technique » dans un projet logiciel ?",
+    "choices": [
+      "Une somme d'argent due au fournisseur de matériel informatique",
+      "Le coût futur induit par des choix techniques rapides ou imparfaits pris pour aller plus vite à court terme",
+      "Un indicateur de la vitesse du réseau interne à l'entreprise",
+      "Un synonyme de bug critique unique"
+    ],
+    "correct": 1,
+    "explanations": [
+      "La dette technique n'est pas une dette financière littérale, c'est une métaphore appliquée à la qualité du code.",
+      "C'est exact : comme une dette financière, elle doit être 'remboursée' plus tard (refactorisation), sous peine de coûts croissants en maintenance.",
+      "La dette technique concerne la qualité et la structure du code, pas la performance réseau.",
+      "La dette technique désigne une accumulation de compromis, pas un bug isolé précis."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce qu'un « code smell » en génie logiciel ?",
+    "choices": [
+      "Une erreur de compilation bloquante",
+      "Un indice révélant un problème potentiel de conception ou de qualité dans le code, sans être une erreur au sens strict",
+      "Un message d'erreur du système d'exploitation",
+      "Un type de malware"
+    ],
+    "correct": 1,
+    "explanations": [
+      "Un code smell n'empêche généralement pas la compilation, le code fonctionne mais reste discutable en qualité.",
+      "C'est exact : un code smell (méthode trop longue, duplication, classe surchargée...) signale une zone à surveiller ou à refactoriser, même si le code fonctionne.",
+      "Un code smell est un concept lié à la qualité du code source, pas un message système.",
+      "Un code smell n'a aucun rapport avec un logiciel malveillant."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Que signifie l'acronyme GUI ?",
+    "choices": [
+      "Graphical User Interface",
+      "General Usage Instruction",
+      "Global Unified Index",
+      "Guided User Input"
+    ],
+    "correct": 0,
+    "explanations": [
+      "C'est exact : une interface graphique (GUI) permet à l'utilisateur d'interagir avec un logiciel via des éléments visuels (fenêtres, boutons, menus...).",
+      "Ce n'est pas la signification reconnue de l'acronyme GUI.",
+      "Ce n'est pas la signification reconnue de l'acronyme GUI.",
+      "Ce n'est pas la signification reconnue de l'acronyme GUI."
+    ]
+  },
+  {
+    "category": "Culture Générale",
+    "question": "Qu'est-ce que la revue de code (« code review ») ?",
+    "choices": [
+      "Une étape facultative sans réel intérêt pour la qualité du projet",
+      "Un processus où d'autres développeurs examinent le code écrit par un collègue avant son intégration, afin d'en améliorer la qualité",
+      "Une compilation automatique effectuée par le serveur",
+      "Une sauvegarde périodique du code source"
+    ],
+    "correct": 1,
+    "explanations": [
+      "La revue de code est au contraire une pratique reconnue pour améliorer la qualité, détecter des bugs et partager les connaissances.",
+      "C'est exact : elle permet de détecter des erreurs, d'améliorer la lisibilité et de partager les bonnes pratiques au sein de l'équipe avant que le code ne soit fusionné.",
+      "La revue de code est une activité humaine d'analyse, pas une simple compilation automatisée.",
+      "La revue de code porte sur la qualité du contenu, elle ne consiste pas à sauvegarder le code."
+    ]
+  }
+]
